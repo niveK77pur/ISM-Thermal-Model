@@ -1,0 +1,68 @@
+classDiagram
+
+
+class Node {
+    -Float temperature
+    +getTemperature() Float
+}
+
+class HeatStorageNode {
+    +Float mass
+    +Float heatCapacity
+    -Dict~String, InterfaceNode~ interfaces
+    +sumInterfaceTemperatures()
+    +addInterfaceNode(name, parameters)
+    +HeatStorageNode(parameters)
+}
+
+class InterfaceNode {
+    +HeatStorageNode referenceNode
+    -Dict~String, Link~ interfaceLinks
+    -Float emissivity
+    -Float absorptivity
+    -Float interfaceArea
+    +addLink(name, node2, parameters)
+    +InterfaceNode(referenceNode, parameters)
+}
+
+class Link {
+    +InterfaceNode node1
+    +InterfaceNode node2
+    +LinkType linkType
+    +Dict parameters
+    -computeRadiationHeatExchange() Float
+    -computeConductionHeatExchange() Float
+    -computeConvectionHeatExchange() Float
+    +computeHeatExchange() Float
+    +Link(node1, node2, parameters)
+}
+
+
+class LinkType {
+    <<Abstract>>
+    +Dict options
+    -computeViewingFactor() Float
+    LinkType(options)
+}
+
+class RayTracing {
+    -additionalFunction1()
+    -additionalFunction2()
+    -additionalFunction...()
+}
+
+
+HeatStorageNode --|> Node
+InterfaceNode --|> Node
+
+RayTracing --|> LinkType
+CircleSurface --|> LinkType
+SurfaceSurface --|> LinkType
+Manual --|> LinkType
+
+Link "1..*" -- "2" InterfaceNode
+
+InterfaceNode "1..*" -- "1" HeatStorageNode
+
+LinkType -- Link
+LinkType -- InterfaceNode
