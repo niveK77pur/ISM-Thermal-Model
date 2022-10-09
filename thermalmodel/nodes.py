@@ -21,6 +21,7 @@ class Node():
 class HeatStorageNode(Node):
 
     def __init__(self, parameters: dict):
+        super().__init__()
 
         self.mass: float         = parameters.get('mass', -1)
         self.heatCapacity: float = parameters.get('heatCapacity', -1)
@@ -42,6 +43,7 @@ class HeatStorageNode(Node):
 class InterfaceNode(Node):
 
     def __init__(self, referenceNode: HeatStorageNode, parameters: dict):
+        super().__init__()
 
         self.referenceNode: HeatStorageNode = referenceNode
 
