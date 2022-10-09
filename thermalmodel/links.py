@@ -44,7 +44,7 @@ class Link():
     def _computeConvectionHeatExchange(self) -> float:
         raise NotImplementedError()
 
-    def computeHeatExchange() -> float:
+    def computeHeatExchange(self) -> float:
         radiation = self._computeRadiationHeatExchange()
         conduction = self._computeConductionHeatExchange()
         convection = self._computeConvectionHeatExchange()
