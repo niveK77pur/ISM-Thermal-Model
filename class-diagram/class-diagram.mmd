@@ -9,18 +9,21 @@ class Node {
 class HeatStorageNode {
     +Float mass
     +Float heatCapacity
-    -Dict~String, InterfaceNode~ interfaces
+    +Dict~String, InterfaceNode~ interfaces
+    +computeInterfaceTemperatures()
     +sumInterfaceTemperatures()
     +addInterfaceNode(name, parameters)
+    +addInterfaceLink(interfaceName, linkName, node2, parameters)
     +HeatStorageNode(parameters)
 }
 
 class InterfaceNode {
     +HeatStorageNode referenceNode
-    -Dict~String, Link~ interfaceLinks
+    +Dict~String, Link~ interfaceLinks
     -Float emissivity
     -Float absorptivity
     -Float interfaceArea
+    +computeTemperature() Float
     +addLink(name, node2, parameters)
     +InterfaceNode(referenceNode, parameters)
 }
