@@ -35,17 +35,17 @@ class Link():
         # TODO: explicitly extract missing parameters which are necessary
         self.parameters: dict = parameters
 
-    def computeRadiationHeatExchange(self) -> float:
+    def _computeRadiationHeatExchange(self) -> float:
         raise NotImplementedError()
 
-    def computeConductionHeatExchange(self) -> float:
+    def _computeConductionHeatExchange(self) -> float:
         raise NotImplementedError()
 
-    def computeConvectionHeatExchange(self) -> float:
+    def _computeConvectionHeatExchange(self) -> float:
         raise NotImplementedError()
 
     def computeHeatExchange() -> float:
-        radiation = computeRadiationHeatExchange()
-        conduction = computeConductionHeatExchange()
-        convection = computeConvectionHeatExchange()
+        radiation = self._computeRadiationHeatExchange()
+        conduction = self._computeConductionHeatExchange()
+        convection = self._computeConvectionHeatExchange()
         return radiation + conduction + convection
