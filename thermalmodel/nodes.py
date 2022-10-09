@@ -28,6 +28,10 @@ class HeatStorageNode(Node):
 
         self.interfaces: { str: InterfaceNode } = {}
 
+    def computeInterfaceTemperatures(self):
+        for interface in self.interfaces.values():
+            interface.computeTemperature()
+
     def sumInterfaceTemperatures(self):
         self._temperature = sum(( ifn.getTemperature() for ifn in self.interfaces.values() ))
         return self._temperature
@@ -37,6 +41,10 @@ class HeatStorageNode(Node):
             raise KeyError(f"Key {name} already exists in HeatStorageNode")
         self.interfaces[name] = InterfaceNode(self, parameters)
         return self.interfaces[name]
+
+    def addInterfaceLink(self, iname: str, lname: str, node2: InterfaceNode, parameters: dict):
+        self.interfaces[iname].addLink(lname, node2, parameters)
+        return self.interfaces[iname].interfaceLinks[lname]
 
 
 
@@ -53,6 +61,10 @@ class InterfaceNode(Node):
         self._interfaceArea: float = parameters.get('interfaceArea', -1)
 
         self.interfaceLinks: { str: Link } = {}
+
+    def computeTemperature(self):
+        self._temperature = sum(( link.computeHeatExchange() for link in self.interfaceLinks.values() ))
+        return self._temperature
 
     def addLink(self, name: str, node2: InterfaceNode, parameters: dict):
         if self.interfaceLinks.get(name, None):
