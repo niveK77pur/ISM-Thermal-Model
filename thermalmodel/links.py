@@ -7,7 +7,6 @@ if TYPE_CHECKING:
     from .nodes import InterfaceNode
 
 
-
 class LinkType():
 
     def __init__(self, options: dict):
@@ -15,6 +14,7 @@ class LinkType():
 
     def computeViewingFator(self) -> float:
         raise NotImplementedError()
+
 
 class Manual(LinkType):
 
@@ -27,7 +27,8 @@ class Manual(LinkType):
 
 class Link():
 
-    def __init__(self, node1: InterfaceNode, node2: InterfaceNode, parameters: dict):
+    def __init__(self, node1: InterfaceNode, node2: InterfaceNode,
+                 parameters: dict):
         self.node1: InterfaceNode = node1
         self.node2: InterfaceNode = node2
 
