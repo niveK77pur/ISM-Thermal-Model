@@ -77,12 +77,11 @@ class Link():
         raise NotImplementedError()
 
     def computeHeatExchange(self) -> float:
-        radiation = self._computeRadiationHeatExchange()
+        elements = {}
+        elements['radiation'] = self._computeRadiationHeatExchange()
         if self._length == 0:
-            contact = self._computeContactHeatExchange()
-            conduction = 0
+            elements['contact'] = self._computeContactHeatExchange()
         elif self._length > 0:
-            contact = 0
-            conduction = self._computeConductionHeatExchange()
-        convection = self._computeConvectionHeatExchange()
-        return radiation + contact + conduction + convection
+            elements['conduction'] = self._computeConductionHeatExchange()
+        # elements['convection'] = self._computeConvectionHeatExchange()
+        return sum(elements.values())
