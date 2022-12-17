@@ -38,10 +38,24 @@ class Link():
         self._length: float = parameters.get('length', None)
         self._area: float = parameters.get('area', None)  # QUESTION: can this area be taken from interface node?
         self._conductivity: float = parameters.get('conductivity', None)
+        self._viewingFactor: float = parameters.get('viewingFactor', None)
         self.parameters: dict = parameters
 
     def _computeRadiationHeatExchange(self) -> float:
-        raise NotImplementedError()
+        boltzman: float = 5.670374419e-8
+        A1 = self.node1._interfaceArea  # TODO: rename _interfaceArea as _radiationArea
+        A2 = self.node2._interfaceArea
+        e1 = self.node1._emissivity
+        e2 = self.node2._emissivity
+        F = self.linkType.computeViewingFator() if self.linkType else self._viewingFactor
+        R = boltzman / (
+            ( (1 - e1) / (e1 * A1) )
+            + (1 / (A1 * F))
+            + ( (1 - e2) / (e2 * A2) )
+        )
+        deltaT = self.node1.getTemperature()**4 - self.node2.getTemperature()**4
+        Q = deltaT / R
+        return Q
 
     def _computeContactHeatExchange(self) -> float:
         assert type(self._area) in (float, int)
