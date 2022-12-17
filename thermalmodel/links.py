@@ -34,7 +34,7 @@ class Link():
 
         self.linkType: LinkType = parameters.get('linkType', None)
         # TODO: explicitly extract missing parameters which are necessary
-        self._R: float = parameters.get('R', None)  # TODO: change name
+        self._resistance: float = parameters.get('resistance', None)
         self._length: float = parameters.get('length', None)
         self._area: float = parameters.get('area', None)  # QUESTION: can this area be taken from interface node?
         self._conductivity: float = parameters.get('conductivity', None)
@@ -48,30 +48,30 @@ class Link():
         e1 = self.node1._emissivity
         e2 = self.node2._emissivity
         F = self.linkType.computeViewingFator() if self.linkType else self._viewingFactor
-        R = boltzman / (
+        resistance = boltzman / (
             ( (1 - e1) / (e1 * A1) )
             + (1 / (A1 * F))
             + ( (1 - e2) / (e2 * A2) )
         )
         deltaT = self.node1.getTemperature()**4 - self.node2.getTemperature()**4
-        Q = deltaT / R
-        return Q
+        heatTransferRate = deltaT / resistance
+        return heatTransferRate
 
     def _computeContactHeatExchange(self) -> float:
         assert type(self._area) in (float, int)
-        assert type(self._R) in (float, int)
+        assert type(self._resistance) in (float, int)
         deltaT = self.node1.getTemperature() - self.node2.getTemperature()
-        Q = deltaT * self._area / self._R
-        return Q
+        heatTransferRate = deltaT * self._area / self._resistance
+        return heatTransferRate
 
     def _computeConductionHeatExchange(self) -> float:
         assert type(self._area) in (float, int)
         assert type(self._length) in (float, int)
         assert type(self._conductivity) in (float, int)
-        R = self._length / self._conductivity * self._area
+        resistance = self._length / self._conductivity * self._area
         deltaT = self.node1.getTemperature() - self.node2.getTemperature()
-        Q = deltaT / R
-        return Q
+        heatTransferRate = deltaT / resistance
+        return heatTransferRate
 
     def _computeConvectionHeatExchange(self) -> float:
         raise NotImplementedError()
