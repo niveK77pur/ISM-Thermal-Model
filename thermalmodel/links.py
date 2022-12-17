@@ -37,6 +37,7 @@ class Link():
         self._R: float = parameters.get('R', None)  # TODO: change name
         self._length: float = parameters.get('length', None)
         self._area: float = parameters.get('area', None)  # QUESTION: can this area be taken from interface node?
+        self._conductivity: float = parameters.get('conductivity', None)
         self.parameters: dict = parameters
 
     def _computeRadiationHeatExchange(self) -> float:
@@ -50,7 +51,13 @@ class Link():
         return Q
 
     def _computeConductionHeatExchange(self) -> float:
-        raise NotImplementedError()
+        assert type(self._area) in (float, int)
+        assert type(self._length) in (float, int)
+        assert type(self._conductivity) in (float, int)
+        R = self._length / self._conductivity * self._area
+        deltaT = self.node1.getTemperature() - self.node2.getTemperature()
+        Q = deltaT / R
+        return Q
 
     def _computeConvectionHeatExchange(self) -> float:
         raise NotImplementedError()
