@@ -54,14 +54,14 @@ class Link():
             + ( (1 - e2) / (e2 * A2) )
         )
         deltaT = self.node1.getTemperature()**4 - self.node2.getTemperature()**4
-        heatTransferRate = deltaT / resistance
+        heatTransferRate = - deltaT / resistance
         return heatTransferRate
 
     def _computeContactHeatExchange(self) -> float:
         assert type(self._area) in (float, int)
         assert type(self._resistance) in (float, int)
         deltaT = self.node1.getTemperature() - self.node2.getTemperature()
-        heatTransferRate = (deltaT * self._area) / self._resistance
+        heatTransferRate = - (deltaT * self._area) / self._resistance
         return heatTransferRate
 
     def _computeConductionHeatExchange(self) -> float:
@@ -70,7 +70,7 @@ class Link():
         assert type(self._conductivity) in (float, int)
         resistance = self._length / (self._conductivity * self._area)
         deltaT = self.node1.getTemperature() - self.node2.getTemperature()
-        heatTransferRate = deltaT / resistance
+        heatTransferRate = - deltaT / resistance
         return heatTransferRate
 
     def _computeConvectionHeatExchange(self) -> float:
