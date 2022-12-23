@@ -53,6 +53,19 @@ class LinkType {
     +LinkType(options)
 }
 
+class RadiationLink {
+    -Float radiationArea1
+    -Float radiationArea2
+}
+
+class ContactLink {
+    -Float contactArea
+}
+
+class ConductionLink {
+    -Float conductionArea
+}
+
 HeatStorageNode --|> Node
 InterfaceNode --|> Node
 

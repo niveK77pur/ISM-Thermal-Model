@@ -56,7 +56,6 @@ class InterfaceNode(Node):
         # self._temperature: float   = parameters.get('temperature', -1)
         self._emissivity: float    = parameters.get('emissivity', -1)
         self._absorptivity: float  = parameters.get('absorptivity', -1)
-        self._interfaceArea: float = parameters.get('interfaceArea', -1)
 
         self.interfaceLinks: {str: Link} = {}
 
