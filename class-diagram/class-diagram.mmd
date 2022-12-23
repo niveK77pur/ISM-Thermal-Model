@@ -31,43 +31,37 @@ class InterfaceNode {
 class Link {
     +InterfaceNode node1
     +InterfaceNode node2
-    +LinkType linkType
-    -Float R
-    -Float length
-    -Float area
-    -Float conductivity
-    -Float viewingFactor
+    +List~LinkType~ linkTypes
     +Dict parameters
-    -computeRadiationHeatExchange() Float
-    -computeContactHeatExchange() Float
-    -computeConductionHeatExchange() Float
-    -computeConvectionHeatExchange() Float
     +computeHeatExchange() Float
-    +Link(node1, node2, parameters)
+    +Link(node1, node2, List~Type[LinkType]~ linkTypes, parameters)
 }
 
 
 class LinkType {
     <<Abstract>>
     +Dict options
-    -computeViewingFactor() Float
-    LinkType(options)
+    +InterfaceNode node1
+    +InterfaceNode node2
+    -float resistance
+    -float length
+    -float area
+    -float conductivity
+    -float viewingFactor
+    +computeViewingFactor() Float
+    +computeHeatExchange() Float
+    +LinkType(options)
 }
-
-class RayTracing {
-    -additionalFunction1()
-    -additionalFunction2()
-    -additionalFunction...()
-}
-
 
 HeatStorageNode --|> Node
 InterfaceNode --|> Node
 
-RayTracing --|> LinkType
-CircleSurface --|> LinkType
-SurfaceSurface --|> LinkType
 Manual --|> LinkType
+RadiationLink --|> LinkType
+ContactLink --|> LinkType
+ConductionLink --|> LinkType
+AmbientLink --|> LinkType
+VacuumChamberLink --|> LinkType
 
 Link "1..*" -- "2" InterfaceNode
 

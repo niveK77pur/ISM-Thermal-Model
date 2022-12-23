@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List, Type
 
 if TYPE_CHECKING:
     from .nodes import InterfaceNode
@@ -11,8 +11,19 @@ class LinkType():
 
     def __init__(self, options: dict):
         self.options: dict = options
+        self.node1: InterfaceNode = options.get('node1')
+        self.node2: InterfaceNode = options.get('node2')
+        self._resistance: float = options.get('resistance', None)
+        self._length: float = options.get('length', None)
+        self._area: float = options.get('area', None)  # QUESTION: can this area be taken from interface node?
+        self._conductivity: float = options.get('conductivity', None)
+        self._viewingFactor: float = options.get('viewingFactor', None)
+        print("TODO: check if node values get updated here (i.e. node is pass by reference)")  # TODO
 
     def computeViewingFator(self) -> float:
+        raise NotImplementedError()
+
+    def computeHeatExchange(self) -> float:
         raise NotImplementedError()
 
 
@@ -25,29 +36,18 @@ class Manual(LinkType):
         return self.options['viewingFactor']
 
 
-class Link():
+class RadiationLink(LinkType):
 
-    def __init__(self, node1: InterfaceNode, node2: InterfaceNode,
-                 parameters: dict):
-        self.node1: InterfaceNode = node1
-        self.node2: InterfaceNode = node2
+    def __init__(self, options: dict):
+        super().__init__(options)
 
-        self.linkType: LinkType = parameters.get('linkType', None)
-        # TODO: explicitly extract missing parameters which are necessary
-        self._resistance: float = parameters.get('resistance', None)
-        self._length: float = parameters.get('length', None)
-        self._area: float = parameters.get('area', None)  # QUESTION: can this area be taken from interface node?
-        self._conductivity: float = parameters.get('conductivity', None)
-        self._viewingFactor: float = parameters.get('viewingFactor', None)
-        self.parameters: dict = parameters
-
-    def _computeRadiationHeatExchange(self) -> float:
+    def computeHeatExchange(self) -> float:
         boltzman: float = 5.670374419e-8
-        A1 = self.node1._interfaceArea  # TODO: rename _interfaceArea as _radiationArea
+        A1 = self.node1._interfaceArea  # TODO: remove _interfaceArea from interface node; use as attribute here
         A2 = self.node2._interfaceArea
         e1 = self.node1._emissivity
         e2 = self.node2._emissivity
-        F = self.linkType.computeViewingFator() if self.linkType else self._viewingFactor
+        F = self._viewingFactor
         resistance = boltzman / (
             ( (1 - e1) / (e1 * A1) )
             + (1 / (A1 * F))
@@ -57,14 +57,26 @@ class Link():
         heatTransferRate = - deltaT / resistance
         return heatTransferRate
 
-    def _computeContactHeatExchange(self) -> float:
+
+class ContactLink(LinkType):
+
+    def __init__(self, options: dict):
+        super().__init__(options)
+
+    def computeHeatExchange(self) -> float:
         assert type(self._area) in (float, int)
         assert type(self._resistance) in (float, int)
         deltaT = self.node1.getTemperature() - self.node2.getTemperature()
         heatTransferRate = - (deltaT * self._area) / self._resistance
         return heatTransferRate
 
-    def _computeConductionHeatExchange(self) -> float:
+
+class ConductionLink(LinkType):
+
+    def __init__(self, options: dict):
+        super().__init__(options)
+
+    def computeHeatExchange(self) -> float:
         assert type(self._area) in (float, int)
         assert type(self._length) in (float, int)
         assert type(self._conductivity) in (float, int)
@@ -73,15 +85,37 @@ class Link():
         heatTransferRate = - deltaT / resistance
         return heatTransferRate
 
-    def _computeConvectionHeatExchange(self) -> float:
-        raise NotImplementedError()
+
+class AmbientLink(LinkType):
+
+    def __init__(self, options: dict):
+        super().__init__(options)
 
     def computeHeatExchange(self) -> float:
-        elements = {}
-        elements['radiation'] = self._computeRadiationHeatExchange()
-        if self._length == 0:
-            elements['contact'] = self._computeContactHeatExchange()
-        elif self._length > 0:
-            elements['conduction'] = self._computeConductionHeatExchange()
-        # elements['convection'] = self._computeConvectionHeatExchange()
-        return sum(elements.values())
+        raise NotImplementedError()
+
+
+class VacuumChamberLink(LinkType):
+
+    def __init__(self, options: dict):
+        super().__init__(options)
+
+    def computeHeatExchange(self) -> float:
+        raise NotImplementedError()
+
+
+class Link():
+
+    def __init__(self, node1: InterfaceNode, node2: InterfaceNode,
+                 linkTypes: List[Type[LinkType]],
+                 parameters: dict):
+        self.node1: InterfaceNode = node1
+        self.node2: InterfaceNode = node2
+
+        parameters['node1'] = node1
+        parameters['node2'] = node2
+        self.linkTypes: List[LinkType] = [ L(parameters) for L in linkTypes ]
+        self.parameters: dict = parameters
+
+    def computeHeatExchange(self) -> float:
+        return sum(( lt.computeHeatExchange() for lt in self.linkTypes ))
