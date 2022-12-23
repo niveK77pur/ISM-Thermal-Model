@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from __future__ import annotations
-from typing import Dict
+from typing import Dict, List, Type
 # from typing import TYPE_CHECKING
 
 # if TYPE_CHECKING:
@@ -42,8 +42,10 @@ class HeatStorageNode(Node):
         return self.interfaces[name]
 
     def addInterfaceLink(self, iname: str, lname: str,
-                         node2: InterfaceNode, parameters: dict):
-        self.interfaces[iname].addLink(lname, node2, parameters)
+                         node2: InterfaceNode,
+                         linkTypes: List[Type[LinkType]],
+                         parameters: dict):
+        self.interfaces[iname].addLink(lname, node2, linkTypes, parameters)
         return self.interfaces[iname].interfaceLinks[lname]
 
 
@@ -54,20 +56,24 @@ class InterfaceNode(Node):
 
         self.referenceNode: HeatStorageNode = referenceNode
 
-        # self._temperature: float   = parameters.get('temperature', -1)
+        self._temperature: float  = None  # TODO: get temp from HSN
+        self._heatExchange: float = -1
+
         self._emissivity: float    = parameters.get('emissivity', -1)
         self._absorptivity: float  = parameters.get('absorptivity', -1)
 
         self.interfaceLinks: Dict[str, Link] = {}
 
-    def computeTemperature(self):
-        self._temperature = sum((
+    def computeHeatExchange(self):
+        self._heatExchange = sum((
             link.computeHeatExchange() for link in self.interfaceLinks.values()
-            ))
-        return self._temperature
+        ))
+        return self._heatExchange
 
-    def addLink(self, name: str, node2: InterfaceNode, parameters: dict):
+    def addLink(self, name: str, node2: InterfaceNode,
+                linkTypes: List[Type[LinkType]],
+                parameters: dict):
         if self.interfaceLinks.get(name, None):
             raise KeyError(f"Key {name} already exists in HeatStorageNode")
-        self.interfaceLinks[name] = Link(self, node2, parameters)
+        self.interfaceLinks[name] = Link(self, node2, linkTypes, parameters)
         return self.interfaceLinks[name]

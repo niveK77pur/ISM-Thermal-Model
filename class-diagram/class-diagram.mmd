@@ -20,11 +20,12 @@ class HeatStorageNode {
 class InterfaceNode {
     +HeatStorageNode referenceNode
     +Dict~String, Link~ interfaceLinks
+    -Float heatExchange
     -Float emissivity
     -Float absorptivity
     -Float interfaceArea
-    +computeTemperature() Float
-    +addLink(name, node2, parameters)
+    +computeHeatExchange() Float
+    +addLink(name, node2, linkTypes, parameters)
     +InterfaceNode(referenceNode, parameters)
 }
 
