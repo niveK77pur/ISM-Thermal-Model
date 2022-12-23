@@ -61,7 +61,7 @@ class Link():
         assert type(self._area) in (float, int)
         assert type(self._resistance) in (float, int)
         deltaT = self.node1.getTemperature() - self.node2.getTemperature()
-        heatTransferRate = deltaT * self._area / self._resistance
+        heatTransferRate = (deltaT * self._area) / self._resistance
         return heatTransferRate
 
     def _computeConductionHeatExchange(self) -> float:
