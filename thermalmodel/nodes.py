@@ -13,6 +13,9 @@ class Node():
     def __init__(self):
         self._temperature: float = 0
 
+    def computeHeatExchange(self):
+        return NotImplementedError()
+
     def getTemperature(self) -> float:
         return self._temperature
 
@@ -22,17 +25,29 @@ class HeatStorageNode(Node):
     def __init__(self, parameters: dict):
         super().__init__()
 
+        self._timestep: float = 0
+
         self.mass: float         = parameters.get('mass', -1)
         self.heatCapacity: float = parameters.get('heatCapacity', -1)
 
+        self.heatGeneration: float = parameters.get('heatGeneration', 0)
+        self._heatExchange: float = -1
+        self._temperature: float = parameters.get('temperature', 0)
+
         self.interfaces: Dict[str, InterfaceNode] = {}
 
-    def computeInterfaceTemperatures(self) -> float:
-        for interface in self.interfaces.values():
-            interface.computeTemperature()
+    def _computeHeatExchange(self) -> float:
+        self._heatExchange = self.heatGeneration + sum((
+            ifn.computeHeatExchange() for ifn in self.interfaces.values()
+        ))
+        return self._heatExchange
 
-    def sumInterfaceTemperatures(self) -> float:
-        self._temperature = sum(( ifn.getTemperature() for ifn in self.interfaces.values() ))
+    def _computeTemperatureDifference(self) -> float:
+        delta = (self._computeHeatExchange() * self._timestep) / (self.mass * self.heatCapacity)
+        return delta
+
+    def computeTemperature(self) -> float:
+        self._temperature += self._computeTemperatureDifference()
         return self._temperature
 
     def addInterfaceNode(self, name: str, parameters: dict) -> InterfaceNode:
@@ -56,7 +71,7 @@ class InterfaceNode(Node):
 
         self.referenceNode: HeatStorageNode = referenceNode
 
-        self._temperature: float  = None  # TODO: get temp from HSN
+        self._temperature: float  = referenceNode._temperature
         self._heatExchange: float = -1
 
         self._emissivity: float    = parameters.get('emissivity', -1)

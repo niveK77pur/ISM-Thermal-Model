@@ -3,27 +3,34 @@ classDiagram
 
 class Node {
     -Float temperature
+    +computeHeatExchange()
     +getTemperature() Float
 }
 
 class HeatStorageNode {
+    -Float timestep
     +Float mass
     +Float heatCapacity
+    +Float heatGeneration
+    -Float heatExchange
+    -Float temperature
     +Dict~String, InterfaceNode~ interfaces
-    +computeInterfaceTemperatures()
-    +sumInterfaceTemperatures()
+    -computeHeatExchange() Float
+    -computeTemperatureDifference() Float
+    +computeTemperature()
     +addInterfaceNode(name, parameters)
-    +addInterfaceLink(interfaceName, linkName, node2, parameters)
+    +addInterfaceLink(interfaceName, linkName, node2, linkTypes, parameters)
     +HeatStorageNode(parameters)
 }
 
 class InterfaceNode {
     +HeatStorageNode referenceNode
     +Dict~String, Link~ interfaceLinks
+    -Float temperature
     -Float heatExchange
     -Float emissivity
     -Float absorptivity
-    -Float interfaceArea
+    -Dict~str, Link~ interfaceLinks
     +computeHeatExchange() Float
     +addLink(name, node2, linkTypes, parameters)
     +InterfaceNode(referenceNode, parameters)
