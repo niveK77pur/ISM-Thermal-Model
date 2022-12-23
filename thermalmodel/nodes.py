@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from __future__ import annotations
+from typing import Dict
 # from typing import TYPE_CHECKING
 
 # if TYPE_CHECKING:
@@ -24,7 +25,7 @@ class HeatStorageNode(Node):
         self.mass: float         = parameters.get('mass', -1)
         self.heatCapacity: float = parameters.get('heatCapacity', -1)
 
-        self.interfaces: {str: InterfaceNode} = {}
+        self.interfaces: Dict[str, InterfaceNode] = {}
 
     def computeInterfaceTemperatures(self):
         for interface in self.interfaces.values():
@@ -57,7 +58,7 @@ class InterfaceNode(Node):
         self._emissivity: float    = parameters.get('emissivity', -1)
         self._absorptivity: float  = parameters.get('absorptivity', -1)
 
-        self.interfaceLinks: {str: Link} = {}
+        self.interfaceLinks: Dict[str, Link] = {}
 
     def computeTemperature(self):
         self._temperature = sum((
