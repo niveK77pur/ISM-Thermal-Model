@@ -25,7 +25,7 @@ class HeatStorageNode(Node):
     def __init__(self, parameters: dict):
         super().__init__()
 
-        self._timestep: float = 0
+        self._timestep: float = 1
 
         self.mass: float         = parameters.get('mass', -1)
         self.heatCapacity: float = parameters.get('heatCapacity', -1)
