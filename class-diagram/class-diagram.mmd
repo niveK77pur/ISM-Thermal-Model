@@ -51,10 +51,6 @@ class LinkType {
     +Dict options
     +InterfaceNode node1
     +InterfaceNode node2
-    -float resistance
-    -float length
-    -float conductivity
-    -float viewingFactor
     +computeViewingFactor() Float
     +computeHeatExchange() Float
     +LinkType(options)
@@ -63,14 +59,18 @@ class LinkType {
 class RadiationLink {
     -Float radiationArea1
     -Float radiationArea2
+    -Float viewingFactor
 }
 
 class ContactLink {
     -Float contactArea
+    -Float resistance
 }
 
 class ConductionLink {
     -Float conductionArea
+    -float conductivity
+    -Float length
 }
 
 HeatStorageNode --|> Node

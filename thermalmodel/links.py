@@ -11,12 +11,8 @@ class LinkType():
 
     def __init__(self, options: dict):
         self.options: dict = options
-        self.node1: InterfaceNode = options.get('node1')
-        self.node2: InterfaceNode = options.get('node2')
-        self._resistance: float = options.get('resistance', None)
-        self._length: float = options.get('length', None)
-        self._conductivity: float = options.get('conductivity', None)
-        self._viewingFactor: float = options.get('viewingFactor', None)
+        self.node1: InterfaceNode = options['node1']
+        self.node2: InterfaceNode = options['node2']
         print("TODO: check if node values get updated here (i.e. node is pass by reference)")  # TODO
 
     def computeViewingFator(self) -> float:
@@ -39,8 +35,9 @@ class RadiationLink(LinkType):
 
     def __init__(self, options: dict):
         super().__init__(options)
-        self._radiationArea1: float = options.get('radiationArea1')
-        self._radiationArea2: float = options.get('radiationArea2')
+        self._radiationArea1: float = options['radiationArea1']
+        self._radiationArea2: float = options['radiationArea2']
+        self._viewingFactor: float = options['viewingFactor']
 
     def computeHeatExchange(self) -> float:
         boltzman: float = 5.670374419e-8
@@ -63,11 +60,10 @@ class ContactLink(LinkType):
 
     def __init__(self, options: dict):
         super().__init__(options)
-        self._contactArea: float = options.get('contactArea')
+        self._contactArea: float = options['contactArea']
+        self._resistance: float = options['resistance']
 
     def computeHeatExchange(self) -> float:
-        assert type(self._contactArea) in (float, int)
-        assert type(self._resistance) in (float, int)
         deltaT = self.node1.getTemperature() - self.node2.getTemperature()
         heatTransferRate = - (deltaT * self._contactArea) / self._resistance
         return heatTransferRate
@@ -77,11 +73,11 @@ class ConductionLink(LinkType):
 
     def __init__(self, options: dict):
         super().__init__(options)
-        self._conductionArea: float = options.get('conductionArea')
+        self._conductionArea: float = options['conductionArea']
+        self._conductivity: float = options['conductivity']
+        self._length: float = options['length']
 
     def computeHeatExchange(self) -> float:
-        assert type(self._length) in (float, int)
-        assert type(self._conductivity) in (float, int)
         resistance = self._length / (self._conductivity * self._conductionArea)
         deltaT = self.node1.getTemperature() - self.node2.getTemperature()
         heatTransferRate = - deltaT / resistance
