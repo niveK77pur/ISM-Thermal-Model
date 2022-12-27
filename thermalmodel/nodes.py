@@ -56,12 +56,12 @@ class HeatStorageNode(Node):
         self.interfaces[name] = InterfaceNode(self, parameters)
         return self.interfaces[name]
 
-    def addInterfaceLink(self, iname: str, lname: str,
+    def addInterfaceLink(self, linkName: str, interfaceName: str,
                          node2: InterfaceNode,
                          linkTypes: List[Type[LinkType]],
                          parameters: dict) -> Link:
-        self.interfaces[iname].addLink(lname, node2, linkTypes, parameters)
-        return self.interfaces[iname].interfaceLinks[lname]
+        self.interfaces[interfaceName].addLink(linkName, node2, linkTypes, parameters)
+        return self.interfaces[interfaceName].interfaceLinks[linkName]
 
 
 class InterfaceNode(Node):
