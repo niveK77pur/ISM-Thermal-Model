@@ -95,7 +95,10 @@ BoardComputer.addInterfaceLink('BAT-front', 'bottom-face',
 # Get temperature of HSN at current time step
 # This would perform the computations behind the scenes
 
+print(f'[BEFORE]: board_temperature = {BoardComputer.getTemperature()}')
+print(f'[BEFORE]: battery_temperature = {Battery.getTemperature()}')
+
 board_temperature = BoardComputer.computeTemperature()
 battery_temperature = Battery.computeTemperature()
-print(f'board_temperature = {board_temperature}')
-print(f'battery_temperature = {battery_temperature}')
+print(f'[AFTER]: board_temperature = {board_temperature}')
+print(f'[AFTER]: battery_temperature = {battery_temperature}')
