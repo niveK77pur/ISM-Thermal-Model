@@ -19,7 +19,7 @@ model_description = [
         },
         [  # list of attached IFN
             (
-                'top',  # IFN name
+                'BAT-top',  # IFN name
                 {  # IFN parameters
                     'emissivity': 10,
                     'absorptivity': 0.4,
@@ -27,7 +27,7 @@ model_description = [
                 [ ]  # links to other IFN
             ),
             (
-                'bottom',
+                'BAT-bottom',
                 {
                     'emissivity': 10,
                     'absorptivity': 0.4,
@@ -35,7 +35,7 @@ model_description = [
                 [ ]
             ),
             (
-                'front',
+                'BAT-front',
                 {
                     'emissivity': 10,
                     'absorptivity': 0.4,
@@ -55,14 +55,14 @@ model_description = [
         },
         [
             (
-                'bottom',
+                'BC-bottom',
                 {
                     'emissivity': 10,
                     'absorptivity': 0.4,
                 },
                 [
                     (
-                        'BAT-top', ('Battery', 'top'),
+                        'BC-BAT-top', ('Battery', 'BAT-top'),
                         [
                             links.RadiationLink,
                             links.ConductionLink,
@@ -80,7 +80,7 @@ model_description = [
                         }
                     ),
                     (
-                        'BAT-bottom', ('Battery', 'bottom'),
+                        'BC-BAT-bottom', ('Battery', 'BAT-bottom'),
                         [
                             links.ContactLink,
                         ],
@@ -90,7 +90,7 @@ model_description = [
                         }
                     ),
                     (
-                        'BAT-front', ('Battery', 'front'),
+                        'BC-BAT-front', ('Battery', 'BAT-front'),
                         [
                             links.ConductionLink,
                         ],
