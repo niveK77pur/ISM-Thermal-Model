@@ -197,7 +197,7 @@ class ThermalModel():
                 # TODO: create new matrix with new values?
                 # TODO: append new matrix to existing matrix (see in '__init__()')?
                 # TODO: if only temperature is recorded, create arrays storing temperature at each timestep
-                # TODO: suggestion: abstract above steps into new function to declutter this main loop (i.e. 'self._createMatrices()' or 'self.addTemperatureReading(...)')
+                # TODO: suggestion: abstract above steps into new function to declutter this main loop (i.e. 'self._createMatrices()' or 'self._addTemperatureReading(...)')
                 print(f'{name} temperature: {temperature}')
 
     def save(self, filename='thermalmodel'):
@@ -208,4 +208,7 @@ class ThermalModel():
     def _createMatrices(self):
         # TODO: this might serve as a helper function to create matrices
         # TODO: this might serve as a helper function to add matrices and increase the dimension after each timestep
+        raise NotImplementedError()
+
+    def _addTemperatureReading(self, temperature: float):
         raise NotImplementedError()
