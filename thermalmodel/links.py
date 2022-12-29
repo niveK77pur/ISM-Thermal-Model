@@ -93,6 +93,7 @@ class AmbientLink(LinkType):
         super().__init__(options)
 
     def computeHeatExchange(self) -> float:
+        # TODO: implement
         raise NotImplementedError()
 
 
@@ -102,6 +103,7 @@ class VacuumChamberLink(LinkType):
         super().__init__(options)
 
     def computeHeatExchange(self) -> float:
+        # TODO: implement
         raise NotImplementedError()
 
 
