@@ -8,7 +8,7 @@ from .nodes import HeatStorageNode, LinkType
 
 class ThermalModel():
 
-    def __init__(self, simulation_duration: int, timestep: float,
+    def __init__(self, simulation_duration: float, timestep: float,
                  model_description: List[
                      Tuple[str, Dict, List[
                          Tuple[str, Dict, List[
@@ -80,7 +80,7 @@ class ThermalModel():
 
         """
 
-        self.duration: int = simulation_duration  # seconds
+        self.duration: float = simulation_duration  # seconds
         self.timestep: float = timestep  # seconds
 
         # TODO generate notes and links

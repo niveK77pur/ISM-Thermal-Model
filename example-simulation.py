@@ -112,7 +112,13 @@ model_description = [
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 thermalmodel = tm.ThermalModel(
-    simulation_duration=20 * 60,
-    timestep=1,
+    simulation_duration=0.1666 * 60,  # seconds
+    timestep=1,  # seconds
     model_description=model_description,
 )
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#                                 Run Simulation
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+thermalmodel.simulate()
