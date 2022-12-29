@@ -1,5 +1,18 @@
 classDiagram
 
+class ThermalModel {
+    -Dict IFNlabelIndex
+    -2DArray LinkHeatExchanges
+    -2DArray IFNHeatExchanges
+    -2DArray HSNHeatExchanges
+    -2DArray HSNTemperatureDifferences
+    -2DArray HSNTemperatures
+    +addHeatStorageNodes(List~(name, parameters)~)
+    +addInterfaceNodes(nameHSN, List~(name, parameters)~)
+    +addInterfaceLinks(nameHSN, nameIFN, List~(name, parameters)~)
+    -createLabelIndex() Dict
+    -createMatrices()
+}
 
 class Node {
     -Float temperature
@@ -72,6 +85,8 @@ class ConductionLink {
     -float conductivity
     -Float length
 }
+
+ThermalModel -- HeatStorageNode
 
 HeatStorageNode --|> Node
 InterfaceNode --|> Node
