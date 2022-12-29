@@ -83,9 +83,11 @@ class ThermalModel():
         self.duration: int = simulation_duration  # seconds
         self.timestep: float = timestep  # seconds
 
+        # TODO generate notes and links
+
         self.heatStorageNodes: Dict[str, HeatStorageNode] = {}
 
-        # Arrays are populated later once the number of nodes are known
+        # TODO: Arrays are populated later once the number of nodes are known
         self.IFNHeatExchanges: np.ndarray = None
         self.HSNHeatExchanges: np.ndarray = None
         self.LinkHeatExchanges: np.ndarray = None
@@ -100,22 +102,40 @@ class ThermalModel():
         pass
 
     def _addHeatStorageNodes(self, nodes: List[Tuple[str, Dict]]):
-        # TODO: Store key-value (name, HSN) pair in dictionary
-        pass
+        # TODO: generate numeric ID for indexing in matrix
+        for nodeHSN in nodes:
+            nameHSN, parameters = nodeHSN
+            if self.heatStorageNodes.get(nameHSN, None):
+                raise KeyError(f"HSN named '{nameHSN}' already exists in ThermalModel")
+            parameters['timestep'] = self.timestep
+            self.heatStorageNodes[nameHSN] = HeatStorageNode(parameters=parameters)
 
     def _addInterfaceNodes(self, nameHSN: str, nodes: List[Tuple[str, Dict]]):
-        # TODO: Use HSN to create IFN
-        pass
+        # TODO: generate numeric ID for indexing in matrix
+        for nodeIFN in nodes:
+            nameIFN, parameters = nodeIFN
+            self.heatStorageNodes[nameHSN].addInterfaceNode(nameIFN, parameters=parameters)
 
     def _addInterfaceLinks(self, nameHSN: str, nameIFN: str,
-                           links: List[Tuple[str, Dict]]):
-        # TODO: Use IFN from HSN to create links
+                           links: List[Tuple[str, Tuple[str, str], List[Type[LinkType]], Dict]]):
         # TODO: Track missing links in opposite direction (maintain a list)
         # TODO: If link in opposite direction is given, remove it from the list of missing links
         # TODO: following steps in new method? i.e. 'generateMissingLinks()'
         # TODO: Appropriately generate missing links (in opposite direction)
         # TODO: How to make opposite link return negative heat exchange of specified link
-        pass
+        for link in links:
+            nameLink, (nameTargetHSN, nameTargetIFN), linkTypes, parameters = link
+            self.heatStorageNodes[nameHSN].addInterfaceLink(
+                nameLink,
+                nameIFN,
+                self.heatStorageNodes[nameTargetHSN].interfaces[nameTargetIFN],
+                linkTypes,
+                parameters
+            )
 
     def simulate(self):
-        pass
+        # TODO: make this proper and log all relevant values
+        for heatStorageNode in self.heatStorageNodes.items():
+            name, HSN = heatStorageNode
+            temperature = HSN.computeTemperature()
+            print(f'{name} temperature: {temperature}')
