@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, List, Type
+from typing import TYPE_CHECKING, Callable, List, Type
 
 if TYPE_CHECKING:
     from .nodes import InterfaceNode
@@ -13,7 +13,6 @@ class LinkType():
         self.options: dict = options
         self.node1: InterfaceNode = options['node1']
         self.node2: InterfaceNode = options['node2']
-        print("TODO: check if node values get updated here (i.e. node is pass by reference)")  # TODO
 
     def computeViewingFator(self) -> float:
         raise NotImplementedError()
@@ -26,9 +25,13 @@ class Manual(LinkType):
 
     def __init__(self, options: dict):
         super().__init__(options)
+        self.func: Callable = options['func']
 
     def computeViewingFator(self) -> float:
         return self.options['viewingFactor']
+
+    def computeHeatExchange(self) -> float:
+        return self.func()
 
 
 class RadiationLink(LinkType):

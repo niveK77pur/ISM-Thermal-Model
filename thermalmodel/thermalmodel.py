@@ -97,6 +97,7 @@ class ThermalModel():
         hsnID = itertools.count()
         self.IDmap['HSN'] += [ (nameHSN, next(hsnID)) for (nameHSN, _, _) in model_description ]
         del hsnID
+
         # create all IFN nodes
         ifnID = itertools.count()
         for nameHSN, _, nodesIFN in model_description:
@@ -104,6 +105,7 @@ class ThermalModel():
             self.counters['IFN'] += len(nodesIFN)
             self.IDmap['IFN'] += [ (nameIFN, next(ifnID)) for (nameIFN, _, _) in nodesIFN ]
         del ifnID
+
         # create all IFN links
         linkID = itertools.count()
         for nameHSN, _, nodesIFN in model_description:
@@ -114,7 +116,8 @@ class ThermalModel():
         del linkID
 
         # TODO: populate arrays using known data
-        # TODO: when adding data for each timestep, gradually increase the dimension (the one saying 1 below)
+        # TODO: when adding data for each timestep in 'simulate()', gradually increase the dimension (the one saying 1 below)
+        # TODO: suggestion: consider not using matrices. They may not be required if only temperature readings are of interest.
         self.IFNHeatExchanges: np.ndarray = np.zeros((self.counters['IFN'], self.counters['IFN'], 1))
         self.HSNHeatExchanges: np.ndarray = np.zeros((self.counters['HSN'], self.counters['HSN'], 1))
         self.HSNTemperatures: np.ndarray = np.zeros((self.counters['HSN'], 1))
@@ -139,9 +142,6 @@ class ThermalModel():
                 return ID
         raise KeyError(f'Name {label} not found in list of class {_class}')
 
-    def _createMatrices(self):
-        raise NotImplementedError()
-
     def _addHeatStorageNodes(self, nodes: List[Tuple[str, Dict]]):
         for nodeHSN in nodes:
             nameHSN, parameters = nodeHSN
@@ -159,9 +159,9 @@ class ThermalModel():
                            links: List[Tuple[str, Tuple[str, str], List[Type[LinkType]], Dict]]):
         # TODO: Track missing links in opposite direction (maintain a list)
         # TODO: If link in opposite direction is given, remove it from the list of missing links
-        # TODO: following steps in new method? i.e. 'generateMissingLinks()'
-        # TODO: Appropriately generate missing links (in opposite direction)
-        # TODO: How to make opposite link return negative heat exchange of specified link
+        # TODO: suggestion:
+        #           - create a list of tuples containing all possible link combinations (`self.IDmap['IFN']` may come in handy)
+        #           - remove tuple from list when corresponding link has been added in the following loop
         for link in links:
             nameLink, (nameTargetHSN, nameTargetIFN), linkTypes, parameters = link
             self.heatStorageNodes[nameHSN].addInterfaceLink(
@@ -171,9 +171,17 @@ class ThermalModel():
                 linkTypes,
                 parameters
             )
+        # TODO: suggestion: put following steps in new method? i.e. 'generateMissingLinks()'
+        # TODO: Appropriately generate missing interface links (in opposite direction)
+        # TODO: Use the 'links.Manual' link type for these links.
+        #       - The computeHeatExchange() method executes a custom function which is provided using the `func` key in the parameters dictionary at instantiation
+        #       - suggestion: create function that retrieves and negates element (j,i) when (i,j) is given
+        #       - suggestion: this function effectively 'computes' the heatExchange of the inverse link
+        #       - this function MUST NOT require any parameters to run (see implementation of 'Manual' linktype)
 
     def simulate(self):
-        # TODO: manage data using the matrices
+        # TODO: manage data using the matrices?
+        # TODO: suggestion: since only temperatures are of interest in the end, we might completely circumvent using matrices
         print('Counters:', self.counters)
         print('IDs:', self.IDmap)
         print('ID2label() example:', self.ID2label('IFN', 2))
@@ -187,6 +195,17 @@ class ThermalModel():
                 name, HSN = heatStorageNode
                 temperature = HSN.computeTemperature()
                 # TODO: create new matrix with new values?
-                # TODO: add new matrix to existing matrix?
-                # TODO: add temperatures to an array for later use/processing
+                # TODO: append new matrix to existing matrix (see in '__init__()')?
+                # TODO: if only temperature is recorded, create arrays storing temperature at each timestep
+                # TODO: suggestion: abstract above steps into new function to declutter this main loop (i.e. 'self._createMatrices()' or 'self.addTemperatureReading(...)')
                 print(f'{name} temperature: {temperature}')
+
+    def save(self, filename='thermalmodel'):
+        # TODO: extract temperature readings (and other data of interest)
+        # TODO: write data to a file (CSV) to avoid re-running the script to get the numbers
+        raise NotImplementedError()
+
+    def _createMatrices(self):
+        # TODO: this might serve as a helper function to create matrices
+        # TODO: this might serve as a helper function to add matrices and increase the dimension after each timestep
+        raise NotImplementedError()
