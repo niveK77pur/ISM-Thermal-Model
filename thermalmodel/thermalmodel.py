@@ -31,7 +31,7 @@ class ThermalModel():
 
             - model_description
 
-                This one allows for a very high level and transparent definition of the model. The creation of all the nodes, links, and matrices is taken care of through the data passed in here. It is important to understand the structure of the data requested here.
+                This one allows for a very high level, transparent and descriptive definition of the model. The creation of all the nodes, links, and matrices is taken care of through the data passed in here. It is important to understand the structure of the data requested here.
 
                 The data should look as follows (consider this an example demystifying the type hint):
 
