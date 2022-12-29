@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Tuple, Type
 import numpy as np
+import itertools
 
 from .nodes import HeatStorageNode, LinkType
 
@@ -86,35 +87,62 @@ class ThermalModel():
         self.heatStorageNodes: Dict[str, HeatStorageNode] = {}
         # number of nodes/links
         self.counters: Dict[str, int] = { 'HSN': 0, 'IFN': 0, 'links': 0 }
+        # map nodes/links to numeric IDs for use on matrices
+        # also see 'ID2label()' and 'label2ID()' functions
+        self.IDmap: Dict[str, List[Tuple[str, int]]] = { 'HSN': [], 'IFN': [], 'links': [] }
 
         # create all HSN nodes
         self._addHeatStorageNodes([ (nameHSN, paramsHSN) for nameHSN, paramsHSN, _ in model_description ])
         self.counters['HSN'] = len(model_description)
+        hsnID = itertools.count()
+        self.IDmap['HSN'] += [ (nameHSN, next(hsnID)) for (nameHSN, _, _) in model_description ]
+        del hsnID
         # create all IFN nodes
+        ifnID = itertools.count()
         for nameHSN, _, nodesIFN in model_description:
             self._addInterfaceNodes(nameHSN, [ (nameIFN, paramsIFN) for nameIFN, paramsIFN, _ in nodesIFN ])
             self.counters['IFN'] += len(nodesIFN)
+            self.IDmap['IFN'] += [ (nameIFN, next(ifnID)) for (nameIFN, _, _) in nodesIFN ]
+        del ifnID
         # create all IFN links
+        linkID = itertools.count()
         for nameHSN, _, nodesIFN in model_description:
             for nameIFN, _, linksIFN in nodesIFN:
                 self._addInterfaceLinks(nameHSN, nameIFN, linksIFN)
                 self.counters['links'] += len(linksIFN)
+                self.IDmap['links'] += [ (nameLink, next(linkID)) for (nameLink, _, _, _) in linksIFN ]
+        del linkID
 
         # TODO: populate arrays using known data
-        self.IFNHeatExchanges: np.ndarray = None
-        self.HSNHeatExchanges: np.ndarray = None
-        self.LinkHeatExchanges: np.ndarray = None
-        self.HSNTemperatureDifferences: np.ndarray = None
-        self.HSNTemperatures: np.ndarray = None
+        # TODO: when adding data for each timestep, gradually increase the dimension (the one saying 1 below)
+        self.IFNHeatExchanges: np.ndarray = np.zeros((self.counters['IFN'], self.counters['IFN'], 1))
+        self.HSNHeatExchanges: np.ndarray = np.zeros((self.counters['HSN'], self.counters['HSN'], 1))
+        self.HSNTemperatures: np.ndarray = np.zeros((self.counters['HSN'], 1))
 
-    def _createLabelIndex(self) -> dict:
-        return {}
+    def ID2label(self, _class: str, ID: int) -> str:
+        """Convert ID from element class to corresponding label string
+            _class: String value containing one of the dict keys of self.IDmap
+        """
+        for idmap in self.IDmap[_class]:
+            name, givenID = idmap
+            if ID == givenID:
+                return name
+        raise KeyError(f'ID {ID} not found in list of class {_class}')
+
+    def label2ID(self, _class: str, label: str) -> int:
+        """Convert label from element class to corresponding ID
+            _class: String value containing one of the dict keys of self.IDmap
+        """
+        for idmap in self.IDmap[_class]:
+            givenName, ID = idmap
+            if label == givenName:
+                return ID
+        raise KeyError(f'Name {label} not found in list of class {_class}')
 
     def _createMatrices(self):
-        pass
+        raise NotImplementedError()
 
     def _addHeatStorageNodes(self, nodes: List[Tuple[str, Dict]]):
-        # TODO: generate numeric ID for indexing in matrix
         for nodeHSN in nodes:
             nameHSN, parameters = nodeHSN
             if self.heatStorageNodes.get(nameHSN, None):
@@ -123,7 +151,6 @@ class ThermalModel():
             self.heatStorageNodes[nameHSN] = HeatStorageNode(parameters=parameters)
 
     def _addInterfaceNodes(self, nameHSN: str, nodes: List[Tuple[str, Dict]]):
-        # TODO: generate numeric ID for indexing in matrix
         for nodeIFN in nodes:
             nameIFN, parameters = nodeIFN
             self.heatStorageNodes[nameHSN].addInterfaceNode(nameIFN, parameters=parameters)
@@ -147,7 +174,11 @@ class ThermalModel():
 
     def simulate(self):
         # TODO: manage data using the matrices
-        print(self.counters)
+        print('Counters:', self.counters)
+        print('IDs:', self.IDmap)
+        print('ID2label() example:', self.ID2label('IFN', 2))
+        print('label2ID() example:', self.label2ID('HSN', 'Battery'))
+
         t = 0
         while t < self.duration:
             t += self.timestep
