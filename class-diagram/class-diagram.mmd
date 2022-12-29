@@ -1,17 +1,24 @@
 classDiagram
 
 class ThermalModel {
-    -Dict IFNlabelIndex
-    -2DArray LinkHeatExchanges
-    -2DArray IFNHeatExchanges
-    -2DArray HSNHeatExchanges
-    -2DArray HSNTemperatureDifferences
-    -2DArray HSNTemperatures
-    +addHeatStorageNodes(List~(name, parameters)~)
-    +addInterfaceNodes(nameHSN, List~(name, parameters)~)
-    +addInterfaceLinks(nameHSN, nameIFN, List~(name, parameters)~)
-    -createLabelIndex() Dict
+    +Float duration
+    +Float timestep
+    +Dict~str, HeatStorageNode~ addHeatStorageNodes
+    +Dict~str, int~ counters
+    +Dict~str, List[Tuple[str, int]]~ IDmap
+    +3DArray IFNHeatExchanges
+    +3DArray HSNHeatExchanges
+    +2DArray HSNTemperatures
+    +ID2label(_class, ID) str
+    +label2ID(_class, label) int
+    -addHeatStorageNodes(List~(name, parameters)~ nodes)
+    -addInterfaceNodes(nameHSN, List~(name, parameters)~ nodes)
+    -addInterfaceLinks(nameHSN, nameIFN, List~(name, target, linkeTypes, parameters)~ links)
+    +simulate()
+    +save(filename?)
     -createMatrices()
+    -addTemperatureReading()
+    +ThermalModel(simulation_duration, timestep, model_description)
 }
 
 class Node {
@@ -67,6 +74,10 @@ class LinkType {
     +computeViewingFactor() Float
     +computeHeatExchange() Float
     +LinkType(options)
+}
+
+class Manual {
+    -Function func
 }
 
 class RadiationLink {
