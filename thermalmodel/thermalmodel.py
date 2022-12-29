@@ -84,16 +84,21 @@ class ThermalModel():
         self.timestep: float = timestep  # seconds
 
         self.heatStorageNodes: Dict[str, HeatStorageNode] = {}
+        # number of nodes/links
+        self.counters: Dict[str, int] = { 'HSN': 0, 'IFN': 0, 'links': 0 }
 
         # create all HSN nodes
         self._addHeatStorageNodes([ (nameHSN, paramsHSN) for nameHSN, paramsHSN, _ in model_description ])
+        self.counters['HSN'] = len(model_description)
         # create all IFN nodes
         for nameHSN, _, nodesIFN in model_description:
             self._addInterfaceNodes(nameHSN, [ (nameIFN, paramsIFN) for nameIFN, paramsIFN, _ in nodesIFN ])
+            self.counters['IFN'] += len(nodesIFN)
         # create all IFN links
         for nameHSN, _, nodesIFN in model_description:
             for nameIFN, _, linksIFN in nodesIFN:
                 self._addInterfaceLinks(nameHSN, nameIFN, linksIFN)
+                self.counters['links'] += len(linksIFN)
 
         # TODO: populate arrays using known data
         self.IFNHeatExchanges: np.ndarray = None
@@ -142,6 +147,7 @@ class ThermalModel():
 
     def simulate(self):
         # TODO: manage data using the matrices
+        print(self.counters)
         t = 0
         while t < self.duration:
             t += self.timestep
