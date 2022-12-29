@@ -83,15 +83,22 @@ class ThermalModel():
         self.duration: float = simulation_duration  # seconds
         self.timestep: float = timestep  # seconds
 
-        # TODO generate notes and links
-
         self.heatStorageNodes: Dict[str, HeatStorageNode] = {}
 
-        # TODO: Arrays are populated later once the number of nodes are known
+        # create all HSN nodes
+        self._addHeatStorageNodes([ (nameHSN, paramsHSN) for nameHSN, paramsHSN, _ in model_description ])
+        # create all IFN nodes
+        for nameHSN, _, nodesIFN in model_description:
+            self._addInterfaceNodes(nameHSN, [ (nameIFN, paramsIFN) for nameIFN, paramsIFN, _ in nodesIFN ])
+        # create all IFN links
+        for nameHSN, _, nodesIFN in model_description:
+            for nameIFN, _, linksIFN in nodesIFN:
+                self._addInterfaceLinks(nameHSN, nameIFN, linksIFN)
+
+        # TODO: populate arrays using known data
         self.IFNHeatExchanges: np.ndarray = None
         self.HSNHeatExchanges: np.ndarray = None
         self.LinkHeatExchanges: np.ndarray = None
-
         self.HSNTemperatureDifferences: np.ndarray = None
         self.HSNTemperatures: np.ndarray = None
 
@@ -134,8 +141,15 @@ class ThermalModel():
             )
 
     def simulate(self):
-        # TODO: make this proper and log all relevant values
-        for heatStorageNode in self.heatStorageNodes.items():
-            name, HSN = heatStorageNode
-            temperature = HSN.computeTemperature()
-            print(f'{name} temperature: {temperature}')
+        # TODO: manage data using the matrices
+        t = 0
+        while t < self.duration:
+            t += self.timestep
+            print(f"=== Time: {t} ===")
+            for heatStorageNode in self.heatStorageNodes.items():
+                name, HSN = heatStorageNode
+                temperature = HSN.computeTemperature()
+                # TODO: create new matrix with new values?
+                # TODO: add new matrix to existing matrix?
+                # TODO: add temperatures to an array for later use/processing
+                print(f'{name} temperature: {temperature}')
