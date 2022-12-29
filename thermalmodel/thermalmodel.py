@@ -173,11 +173,11 @@ class ThermalModel():
             )
         # TODO: suggestion: put following steps in new method? i.e. 'generateMissingLinks()'
         # TODO: Appropriately generate missing interface links (in opposite direction)
-        # TODO: Use the 'links.Manual' link type for these links.
+        # TODO: Use the 'links.ManualLink' link type for these links.
         #       - The computeHeatExchange() method executes a custom function which is provided using the `func` key in the parameters dictionary at instantiation
         #       - suggestion: create function that retrieves and negates element (j,i) when (i,j) is given
         #       - suggestion: this function effectively 'computes' the heatExchange of the inverse link
-        #       - this function MUST NOT require any parameters to run (see implementation of 'Manual' linktype)
+        #       - this function MUST NOT require any parameters to run (see implementation of 'ManualLink' linktype)
 
     def simulate(self):
         # TODO: manage data using the matrices?

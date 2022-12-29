@@ -76,7 +76,7 @@ class LinkType {
     +LinkType(options)
 }
 
-class Manual {
+class ManualLink {
     -Function func
 }
 
@@ -102,7 +102,7 @@ ThermalModel -- HeatStorageNode
 HeatStorageNode --|> Node
 InterfaceNode --|> Node
 
-Manual --|> LinkType
+ManualLink --|> LinkType
 RadiationLink --|> LinkType
 ContactLink --|> LinkType
 ConductionLink --|> LinkType

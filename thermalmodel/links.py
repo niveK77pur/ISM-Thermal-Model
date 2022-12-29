@@ -21,7 +21,7 @@ class LinkType():
         raise NotImplementedError()
 
 
-class Manual(LinkType):
+class ManualLink(LinkType):
 
     def __init__(self, options: dict):
         super().__init__(options)
