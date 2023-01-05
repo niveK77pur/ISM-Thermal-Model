@@ -37,6 +37,24 @@ class ThermalModel():
 
                 The data should look as follows (consider this an example demystifying the type hint):
 
+                    (1st level: define HSNs)
+                    - HSN-Battery
+                        (2nd level: define IFNs attached to HSN)
+                        - IFN-Battery-top
+                            (3rd level: define links from current IFN to other IFNs)
+                            - IFN-BC-top
+                            - IFN-BC-front
+                        - IFN-Battery-bottom
+                        - IFN-Battery-front
+                    - HSN-BoardComupter
+                        - IFN-BC-top
+                        - IFN-BC-bottom
+                        - IFN-BC-front
+                    - HSN-ADC
+                        - IFN-ADC-top
+                        - IFN-ADC-bottom
+                        - IFN-ADC-front
+
                     [
                         ('Battery', {<HSN parameters>}, [
                             ('top', {<IFN parameters>}, [
