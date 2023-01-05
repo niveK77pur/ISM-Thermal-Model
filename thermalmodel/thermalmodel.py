@@ -5,6 +5,7 @@ import numpy as np
 import itertools
 
 from .nodes import HeatStorageNode, LinkType
+from .links import ManualLink
 
 
 class ThermalModel():
@@ -156,13 +157,9 @@ class ThermalModel():
             self.heatStorageNodes[nameHSN].addInterfaceNode(nameIFN, parameters=parameters)
 
     def _addInterfaceLinks(self, nameHSN: str, nameIFN: str,
-                           links: List[Tuple[str, Tuple[str, str], List[Type[LinkType]], Dict]]):
-        # TODO: Track missing links in opposite direction (maintain a list)
-        # TODO: If link in opposite direction is given, remove it from the list of missing links
-        # TODO: suggestion:
-        #           - create a list of tuples containing all possible link combinations (`self.IDmap['IFN']` may come in handy)
-        #           - remove tuple from list when corresponding link has been added in the following loop
-        for link in links:
+                           links_definition: List[Tuple[str, Tuple[str, str], List[Type[LinkType]], Dict]]):
+        givenLinks: List[Tuple[Tuple[str, str], Tuple[str, str], str]] = []
+        for link in links_definition:
             nameLink, (nameTargetHSN, nameTargetIFN), linkTypes, parameters = link
             self.heatStorageNodes[nameHSN].addInterfaceLink(
                 nameLink,
@@ -171,13 +168,18 @@ class ThermalModel():
                 linkTypes,
                 parameters
             )
-        # TODO: suggestion: put following steps in new method? i.e. 'generateMissingLinks()'
-        # TODO: Appropriately generate missing interface links (in opposite direction)
-        # TODO: Use the 'links.ManualLink' link type for these links.
-        #       - The computeHeatExchange() method executes a custom function which is provided using the `func` key in the parameters dictionary at instantiation
-        #       - suggestion: create function that calculates and negates element (j,i) when (i,j) is given
-        #       - suggestion: this function effectively 'computes' the heatExchange of the inverse link
-        #       - this function MUST NOT require any parameters to run (see implementation of 'ManualLink' linktype)
+            # keep track of defined links
+            givenLinks.append(( (nameHSN, nameIFN), (nameTargetHSN, nameTargetIFN), nameLink ))
+        # create inverse links
+        for link in givenLinks:
+            (nameHSN, nameIFN), (nameTargetHSN, nameTargetIFN), nameLink = link
+            self.heatStorageNodes[nameTargetHSN].addInterfaceLink(
+                nameLink + '-inversed',
+                nameTargetIFN,
+                self.heatStorageNodes[nameHSN].interfaces[nameIFN],
+                [ ManualLink ],
+                { 'func': lambda: -1 * self.heatStorageNodes[nameHSN].interfaces[nameIFN].computeHeatExchange() }
+            )
 
     def simulate(self):
         # TODO: manage data using the matrices?
