@@ -11,6 +11,7 @@ on:
     #   - main
 jobs:
   final-simulation:
+    if: ${{ github.event.pull_request.number == 1 }}
     runs-on: ubuntu-latest
     steps:
       - run: echo $${{ github }}
@@ -26,3 +27,7 @@ jobs:
           python -m pip install pipenv
           pipenv install
       - run: pipenv run python final-simulation
+  PR-test:
+    if: ${{ github.event.pull_request.number == 5 }}
+    steps:
+      - run: echo "hello test"
