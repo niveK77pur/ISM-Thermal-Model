@@ -31,4 +31,9 @@ jobs:
     if: ${{ github.event.pull_request.number == 5 }}
     runs-on: ubuntu-latest
     steps:
+      - uses: mheap/automatic-approve-action@v1
+        with:
+          token: ${{ secrets.PAT }}
+          workflows: "final-model-PR.yml"
+          dangerous_files: "*.py"
       - run: echo "hello test"
