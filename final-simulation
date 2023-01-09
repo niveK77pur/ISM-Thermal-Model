@@ -226,19 +226,75 @@ model_description.append ( (
 
 ) )
             
+# model_description.append ( (
+    
+#     (  # HSN
+#         'MS-Z+',  # HSN name
+#         {  # HSN parameters
+#             'mass': 0.03,
+#             'heatCapacity': 887,
+#             'heatGeneration': 0,
+#             'temperature': 22,
+#         },
+#         [  # list of attached IFN
+#             (
+#                 'MS-Z+-inner',  # IFN name
+#                 {  # IFN parameters
+#                     'emissivity': 0.045,
+#                     'absorptivity': 0,
+#                 },
+#                 [ ]  # links to other IFN
+#             ),
+#         ]
+#     ),
+
+#     (
+#         'MAGcoilY',
+#         {
+#             'mass': 0.015,
+#             'heatCapacity': 376,
+#             # heat generation is assumed 0 if not specified
+#             'temperature': 22,
+#         },
+#         [
+#             (
+#                 'MAGcoilY-outercirc',
+#                 {
+#                     'emissivity': 0.045,
+#                     'absorptivity': 0,
+#                 },
+#                 [
+#                     (
+#                         'MAGcoilY-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+#                         [
+#                             links.RadiationLink,
+#                         ],
+#                         {
+#                             'radiationArea1': 0.000892,  # used by radiation calculations
+#                             'radiationArea2': 2.4,   # used by radiation calculations
+#                             'viewingFactor': 2.4,    # used by radiation calculations
+#                         }
+#                     ),
+#                 ]
+#             ),
+#         ]
+#     ),
+
+# ) )
+            
 model_description.append ( (
     
     (  # HSN
-        'MS-Z+',  # HSN name
+        'Batteries',  # HSN name
         {  # HSN parameters
-            'mass': 0.03,
+            'mass': 0.032,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
         },
         [  # list of attached IFN
             (
-                'MS-Z+-inner',  # IFN name
+                'BAT-curved',  # IFN name
                 {  # IFN parameters
                     'emissivity': 0.045,
                     'absorptivity': 0,
@@ -252,13 +308,13 @@ model_description.append ( (
         'MAGcoilY',
         {
             'mass': 0.015,
-            'heatCapacity': 376,
+            'heatCapacity': 887,
             # heat generation is assumed 0 if not specified
             'temperature': 22,
         },
         [
             (
-                'MAGcoilY-outercirc',
+                'MAGcoilY-innercirc',
                 {
                     'emissivity': 0.045,
                     'absorptivity': 0,
@@ -270,9 +326,9 @@ model_description.append ( (
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.000892,  # used by radiation calculations
-                            'radiationArea2': 2.4,   # used by radiation calculations
-                            'viewingFactor': 2.4,    # used by radiation calculations
+                            'radiationArea1': 0.0042,    # used by radiation calculations
+                            'radiationArea2': 0.0035,    # used by radiation calculations
+                            'viewingFactor': 0.45,       # used by radiation calculations
                         }
                     ),
                 ]
