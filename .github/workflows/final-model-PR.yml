@@ -27,13 +27,3 @@ jobs:
           python -m pip install pipenv
           pipenv install
       - run: pipenv run python final-simulation
-  PR-test:
-    if: ${{ github.event.pull_request.number == 5 }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: mheap/automatic-approve-action@v1
-        with:
-          token: ${{ secrets.PAT }}
-          workflows: "final-model-PR.yml"
-          dangerous_files: "*.py"
-      - run: echo "hello test"
