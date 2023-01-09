@@ -151,7 +151,7 @@ model_description = [
                         ],
                         {
                             'contactArea': 0.003,       # used by contact calculations
-                            'resistance': 0.05,       # used by contact calculations
+                            'resistance': 0.05,         # used by contact calculations
                         }
                     ),
                 ]
@@ -160,6 +160,62 @@ model_description = [
     ),
 
 ]
+
+
+model_description = [
+
+    (  # HSN
+        'SSI',  # HSN name
+        {  # HSN parameters
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [  # list of attached IFN
+            (
+                'SSI-side',  # IFN name
+                {  # IFN parameters
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+            ),
+        ]
+    ),
+
+    (
+        'MS-Z+',
+        {
+            'mass': 0.03,
+            'heatCapacity': 887,
+            # heat generation is assumed 0 if not specified
+            'temperature': 22,
+        },
+        [
+            (
+                'MS-Z+-inner',
+                {
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'MS-Z+-SSI-side', ('SSI', 'SSI-side'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.000108,       # used by contact calculations
+                            'resistance': 0.05,            # used by contact calculations
+                        }
+                    ),
+                ]
+            ),
+        ]
+    ),
+
+]
+
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
