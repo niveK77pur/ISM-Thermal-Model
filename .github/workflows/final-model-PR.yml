@@ -9,7 +9,7 @@ on:
 jobs:
   final-simulation:
     # if: ${{ github.repository == 'misbahr1/ISM-Thermal-Model' && github.ref_name == 'patch-1' }}
-    if: ${{ github.repository == 'misbahr1/ISM-Thermal-Model' }}
+    # if: ${{ github.repository == 'misbahr1/ISM-Thermal-Model' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
