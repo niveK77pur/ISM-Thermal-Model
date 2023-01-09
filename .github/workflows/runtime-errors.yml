@@ -1,0 +1,14 @@
+---
+
+name: runtime errors
+run-name: ${{ github.actor }} has pushed
+on: [push]
+jobs:
+  example-script:
+    runs-on: ubuntu-latest
+    steps:
+      - run: python example.py
+  example-simulation:
+    runs-on: ubuntu-latest
+    steps:
+      - run: python example-simulation.py
