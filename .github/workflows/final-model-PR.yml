@@ -4,6 +4,9 @@ name: final model PR
 run-name: ${{ github.actor }} has pushed on PR (in ${{ github.repository }} / ${{ github.event.pull_request.id }} / ${{ github.event.pull_request.number }})
 on:
   pull_request:
+    types:
+      - synchronize
+      - edited
     # branches:
     #   - main
 jobs:
