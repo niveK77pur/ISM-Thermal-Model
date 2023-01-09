@@ -1,4 +1,4 @@
-# AHHHHHHHHHHHHH
+# AHHHHHHHHHH
 
 This project aims to provide a simple framework to create a thermal model. *More details to be added when ready.*
 
