@@ -115,6 +115,7 @@ model_description.append ( (
             ),
         ]
     ),
+
 ) )
                           
 model_description.append ( (
@@ -166,6 +167,7 @@ model_description.append ( (
             ),
         ]
     ),
+
 ) )
                
 model_description.append ( (
@@ -221,7 +223,67 @@ model_description.append ( (
             ),
         ]
     ),
+
 ) )
+            
+model_description.append ( (
+    
+    (  # HSN
+        'MS-Z+',  # HSN name
+        {  # HSN parameters
+            'mass': 0.03,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [  # list of attached IFN
+            (
+                'MS-Z+-inner',  # IFN name
+                {  # IFN parameters
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [ ]  # links to other IFN
+            ),
+        ]
+    ),
+
+    (
+        'MAGcoilY',
+        {
+            'mass': 0.015,
+            'heatCapacity': 376,
+            # heat generation is assumed 0 if not specified
+            'temperature': 22,
+        },
+        [
+            (
+                'MAGcoilY-outercirc',
+                {
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'MAGcoilY-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.000892,  # used by radiation calculations
+                            'radiationArea2': 2.4,   # used by radiation calculations
+                            'viewingFactor': 2.4,    # used by radiation calculations
+                        }
+                    ),
+                ]
+            ),
+        ]
+    ),
+
+) )
+
+
+    
                
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
