@@ -1,4 +1,5 @@
-# AHH
+# ISM Thermal Model
+
 This project aims to provide a simple framework to create a thermal model. *More details to be added when ready.*
 
 This is still **WORK IN PROGRESS**. The files in [thermalmodel](./thermalmodel) contain all the classes for the implementation.
