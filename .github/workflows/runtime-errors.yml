@@ -7,8 +7,10 @@ jobs:
   example-script:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: python example.py
   example-simulation:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: python example-simulation.py
