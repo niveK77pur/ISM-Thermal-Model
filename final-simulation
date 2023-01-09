@@ -7,97 +7,151 @@ import thermalmodel.links as links
 #                                Model description
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# model_description = [
+
+#     (  # HSN
+#         'Battery',  # HSN name
+#         {  # HSN parameters
+#             'mass': 10,
+#             'heatCapacity': 20,
+#             'heatGeneration': 0,
+#             'temperature': 22,
+#         },
+#         [  # list of attached IFN
+#             (
+#                 'BAT-top',  # IFN name
+#                 {  # IFN parameters
+#                     'emissivity': 10,
+#                     'absorptivity': 0,
+#                 },
+#                 [ ]  # links to other IFN
+#             ),
+#             (
+#                 'BAT-bottom',
+#                 {
+#                     'emissivity': 10,
+#                     'absorptivity': 0,
+#                 },
+#                 [ ]
+#             ),
+#             (
+#                 'BAT-front',
+#                 {
+#                     'emissivity': 10,
+#                     'absorptivity': 0,
+#                 },
+#                 [ ]
+#             ),
+#         ]
+#     ),
+
+#     (
+#         'BoardComputer',
+#         {
+#             'mass': 5,
+#             'heatCapacity': 8,
+#             # heat generation is assumed 0 if not specified
+#             'temperature': 21.2,
+#         },
+#         [
+#             (
+#                 'BC-bottom',
+#                 {
+#                     'emissivity': 10,
+#                     'absorptivity': 0.4,
+#                 },
+#                 [
+#                     (
+#                         'BC-BAT-top', ('Battery', 'BAT-top'),
+#                         [
+#                             links.RadiationLink,
+#                             links.ConductionLink,
+#                             links.ContactLink,
+#                         ],
+#                         {
+#                             'radiationArea1': 12.4,  # used by radiation calculations
+#                             'radiationArea2': 2.4,   # used by radiation calculations
+#                             'viewingFactor': 2.4,    # used by radiation calculations
+#                             'contactArea': 20,       # used by contact calculations
+#                             'resistance': 4.2,       # used by contact calculations
+#                             'conductionArea': 8.51,  # used by conduction calculations
+#                             'conductivity': 3.8,     # used by conduction calculations
+#                             'length': 0.4,           # used by conduction calculations
+#                         }
+#                     ),
+#                     (
+#                         'BC-BAT-bottom', ('Battery', 'BAT-bottom'),
+#                         [
+#                             links.ContactLink,
+#                         ],
+#                         {
+#                             'contactArea': 5.2,
+#                             'resistance': 4.2,
+#                         }
+#                     ),
+#                     (
+#                         'BC-BAT-front', ('Battery', 'BAT-front'),
+#                         [
+#                             links.ConductionLink,
+#                         ],
+#                         {
+#                             'conductionArea': 8.51,
+#                             'conductivity': 3.8,
+#                             'length': 0.4,
+#                         }
+#                     ),
+#                 ]
+#             ),
+#         ]
+#     ),
+
+# ]
+
 model_description = [
 
     (  # HSN
-        'Battery',  # HSN name
+        'Antenna-Plate',  # HSN name
         {  # HSN parameters
-            'mass': 10,
-            'heatCapacity': 20,
-            'heatGeneration': 13.2,
-            'temperature': 20,
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
         },
         [  # list of attached IFN
             (
-                'BAT-top',  # IFN name
+                'Antenna-Plate-bottom',  # IFN name
                 {  # IFN parameters
-                    'emissivity': 10,
-                    'absorptivity': 0.4,
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
                 },
-                [ ]  # links to other IFN
-            ),
-            (
-                'BAT-bottom',
-                {
-                    'emissivity': 10,
-                    'absorptivity': 0.4,
-                },
-                [ ]
-            ),
-            (
-                'BAT-front',
-                {
-                    'emissivity': 10,
-                    'absorptivity': 0.4,
-                },
-                [ ]
             ),
         ]
     ),
 
     (
-        'BoardComputer',
+        'SSI',
         {
-            'mass': 5,
-            'heatCapacity': 8,
+            'mass': 0.01,
+            'heatCapacity': 887,
             # heat generation is assumed 0 if not specified
-            'temperature': 21.2,
+            'temperature': 22,
         },
         [
             (
-                'BC-bottom',
+                'SSI-top',
                 {
-                    'emissivity': 10,
-                    'absorptivity': 0.4,
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
                 },
                 [
                     (
-                        'BC-BAT-top', ('Battery', 'BAT-top'),
-                        [
-                            links.RadiationLink,
-                            links.ConductionLink,
-                            links.ContactLink,
-                        ],
-                        {
-                            'radiationArea1': 12.4,  # used by radiation calculations
-                            'radiationArea2': 2.4,   # used by radiation calculations
-                            'viewingFactor': 2.4,    # used by radiation calculations
-                            'contactArea': 20,       # used by contact calculations
-                            'resistance': 4.2,       # used by contact calculations
-                            'conductionArea': 8.51,  # used by conduction calculations
-                            'conductivity': 3.8,     # used by conduction calculations
-                            'length': 0.4,           # used by conduction calculations
-                        }
-                    ),
-                    (
-                        'BC-BAT-bottom', ('Battery', 'BAT-bottom'),
+                        'SSI-Antenna-Plate-bottom', ('Antenna-Plate', 'Antenna-Plate-bottom'),
                         [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 5.2,
-                            'resistance': 4.2,
-                        }
-                    ),
-                    (
-                        'BC-BAT-front', ('Battery', 'BAT-front'),
-                        [
-                            links.ConductionLink,
-                        ],
-                        {
-                            'conductionArea': 8.51,
-                            'conductivity': 3.8,
-                            'length': 0.4,
+                            'contactArea': 0.003,       # used by contact calculations
+                            'resistance': 0.05,       # used by contact calculations
                         }
                     ),
                 ]
@@ -106,6 +160,7 @@ model_description = [
     ),
 
 ]
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
