@@ -29,5 +29,6 @@ jobs:
       - run: pipenv run python final-simulation
   PR-test:
     if: ${{ github.event.pull_request.number == 5 }}
+    runs-on: ubuntu-latest
     steps:
       - run: echo "hello test"
