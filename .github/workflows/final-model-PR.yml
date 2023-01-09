@@ -1,7 +1,7 @@
 ---
 
 name: final model PR
-run-name: ${{ github.actor }} has pushed on PR
+run-name: ${{ github.actor }} has pushed on PR (in ${{ github.repository }})
 on:
   pull_request:
     branches:
