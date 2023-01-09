@@ -8,8 +8,6 @@ on:
     #   - main
 jobs:
   final-simulation:
-    # if: ${{ github.repository == 'misbahr1/ISM-Thermal-Model' && github.ref_name == 'patch-1' }}
-    # if: ${{ github.repository == 'misbahr1/ISM-Thermal-Model' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo $${{ github }}
