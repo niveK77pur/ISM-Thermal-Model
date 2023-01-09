@@ -63,7 +63,7 @@ model_description = [
 ]
 
 
-model_description.append = [
+model_description.append(( = [
 
     (  # HSN
         'SSI',  # HSN name
@@ -118,7 +118,9 @@ model_description.append = [
 
 ]
 
-model_description.append = [
+                         ))
+                        
+model_description.append(( = [
 
     (  # HSN
         'MAGcoilY',  # HSN name
@@ -169,8 +171,9 @@ model_description.append = [
     ),
 
 ]
+            ))
                
-model_description.append = [
+model_description.append(( = [
 
     (  # HSN
         'Battery',  # HSN name
@@ -270,6 +273,7 @@ model_description.append = [
 
 ]
 
+            ))
                
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
