@@ -202,10 +202,10 @@ class ThermalModel():
     def simulate(self):
         # TODO: manage data using the matrices?
         # TODO: suggestion: since only temperatures are of interest in the end, we might completely circumvent using matrices
-        print('Counters:', self.counters)
-        print('IDs:', self.IDmap)
-        print('ID2label() example:', self.ID2label('IFN', 2))
-        print('label2ID() example:', self.label2ID('HSN', 'Battery'))
+        # print('Counters:', self.counters)
+        # print('IDs:', self.IDmap)
+        # print('ID2label() example:', self.ID2label('IFN', 2))
+        # print('label2ID() example:', self.label2ID('HSN', 'Battery'))
 
         t = 0
         while t < self.duration:
