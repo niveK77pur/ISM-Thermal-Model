@@ -34,7 +34,7 @@ model_description = [
         {
             'mass': 0.01,
             'heatCapacity': 887,
-            # heat generation is assumed 0 if not specified
+            'heatGeneration': 0,
             'temperature': 22,
         },
         [
@@ -57,22 +57,6 @@ model_description = [
                     ),
                 ]
             ),
-        ]
-    ),
-
-]
-
-model_description.append(
-
-    (  # HSN
-        'SSI',  # HSN name
-        {  # HSN parameters
-            'mass': 0.01,
-            'heatCapacity': 887,
-            'heatGeneration': 0,
-            'temperature': 22,
-        },
-        [  # list of attached IFN
             (
                 'SSI-side',  # IFN name
                 {  # IFN parameters
@@ -81,9 +65,30 @@ model_description.append(
                 },
                 [ ]
             ),
+            (
+                'SSI-bottom',
+                {
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'SSI-MAGcoilY-top', ('MAGcoilY', 'MAGcoilY-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.002,  # used by radiation calculations
+                            'radiationArea2': 0.002,  # used by radiation calculations
+                            'viewingFactor': 0.8,     # used by radiation calculations
+                        }
+                    ),
+                ]
+            ),
         ]
-    )
-)
+    ),
+
+]
 
 model_description.append(
     (
@@ -137,40 +142,6 @@ model_description.append(
                 },
                 [ ]  # links to other IFN
             )
-        ]
-    )
-)
-
-model_description.append(
-    (
-        'SSI',
-        {
-            'mass': 0.01,
-            'heatCapacity': 887,
-            # heat generation is assumed 0 if not specified
-            'temperature': 22,
-        },
-        [
-            (
-                'SSI-bottom',
-                {
-                    'emissivity': 0.045,
-                    'absorptivity': 0,
-                },
-                [
-                    (
-                        'SSI-MAGcoilY-top', ('MAGcoilY', 'MAGcoilY-top'),
-                        [
-                            links.RadiationLink,
-                        ],
-                        {
-                            'radiationArea1': 0.002,  # used by radiation calculations
-                            'radiationArea2': 0.002,  # used by radiation calculations
-                            'viewingFactor': 0.8,     # used by radiation calculations
-                        }
-                    ),
-                ]
-            ),
         ]
     )
 )
