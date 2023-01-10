@@ -234,7 +234,7 @@ model_description.append(
                         {
                             'radiationArea1': 0.008,    # used by radiation calculations
                             'radiationArea2': 0.004,    # used by radiation calculations
-                            'viewingFactor': -1,        # TODO: define value; required by radiation calculation
+                            'viewingFactor': 0.4,        # TODO: define value; required by radiation calculation
                         }
                     ),
                 ]
