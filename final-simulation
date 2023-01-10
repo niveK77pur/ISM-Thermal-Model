@@ -227,7 +227,7 @@ model_description.append(
                 },
                 [
                     (
-                        'Batteries-EPS-top', ('EPS', 'EPS-top'),
+                        'Batteries-EPS-top', ('Batteries', 'BAT-curved'),
                         [
                             links.RadiationLink,
                         ],
