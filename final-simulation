@@ -171,7 +171,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MAGcoilY-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        'MAGcoilY-MS-Z+-inner2', ('MS-Z+', 'MS-Z+-inner'),  # TODO: duplicate IFN key entry leads to error; rename to be unique
                         [
                             links.RadiationLink,
                         ],
@@ -234,7 +234,7 @@ model_description.append(
                         {
                             'radiationArea1': 0.008,    # used by radiation calculations
                             'radiationArea2': 0.004,    # used by radiation calculations
-                            # 'viewingFactor': 0.45,      # used by radiation calculations
+                            'viewingFactor': -1,        # TODO: define value; required by radiation calculation
                         }
                     ),
                 ]
