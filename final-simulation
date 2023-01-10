@@ -345,6 +345,43 @@ model_description.append(
     )
 )
 
+
+model_description.append(
+    (
+        'EPS',
+        {
+            'mass': 0.013,
+            'heatCapacity': 1100,
+            'heatGeneration': 0.2,
+            'temperature': 22,
+        },
+        [
+            (
+                'EPS-top',
+                {
+                    'emissivity': 0.7,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'Batteries-EPS-top', ('EPS', 'EPS-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,    # used by radiation calculations
+                            'radiationArea2': 0.004,    # used by radiation calculations
+                            # 'viewingFactor': 0.45,      # used by radiation calculations
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)
+
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
