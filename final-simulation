@@ -63,7 +63,7 @@ model_description = [
 ]
 
 
-model_description.append ( (
+model_description.append( (
 
     (  # HSN
         'SSI',  # HSN name
@@ -118,7 +118,7 @@ model_description.append ( (
 
 ) )
                           
-model_description.append ( (
+model_description.append( (
 
     (  # HSN
         'MAGcoilY',  # HSN name
@@ -170,7 +170,7 @@ model_description.append ( (
 
 ) )
                
-model_description.append ( (
+model_description.append( (
 
     (  # HSN
         'MS-Z+',  # HSN name
@@ -226,7 +226,7 @@ model_description.append ( (
 
 ) )
             
-# model_description.append ( (
+# model_description.append( (
     
 #     (  # HSN
 #         'MS-Z+',  # HSN name
@@ -282,7 +282,7 @@ model_description.append ( (
 
 # ) )
             
-model_description.append ( (
+model_description.append( (
     
     (  # HSN
         'Batteries',  # HSN name
