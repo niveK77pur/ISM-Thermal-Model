@@ -62,7 +62,6 @@ model_description = [
 
 ]
 
-
 model_description.append(
 
     (  # HSN
@@ -119,7 +118,6 @@ model_description.append(
     )
 )
 
-                          
 model_description.append(
 
     (  # HSN
@@ -139,8 +137,8 @@ model_description.append(
                 },
                 [ ]  # links to other IFN
             )
-         ]
-     )
+        ]
+    )
 )
 
 model_description.append(
@@ -177,7 +175,6 @@ model_description.append(
     )
 )
 
-               
 model_description.append(
 
     (  # HSN
@@ -234,10 +231,9 @@ model_description.append(
         ]
     )
 )
-            
 
 # model_description.append(
-    
+
 #     (  # HSN
 #         'MS-Z+',  # HSN name
 #         {  # HSN parameters
@@ -293,9 +289,7 @@ model_description.append(
 #     )
 # )
 
-            
 model_description.append(
-    
     (  # HSN
         'Batteries',  # HSN name
         {  # HSN parameters
@@ -351,9 +345,6 @@ model_description.append(
     )
 )
 
-
-    
-               
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
