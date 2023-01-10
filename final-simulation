@@ -96,7 +96,7 @@ model_description.append(
         {
             'mass': 0.03,
             'heatCapacity': 887,
-            # heat generation is assumed 0 if not specified
+            'heatGeneration': 0,
             'temperature': 22,
         },
         [
@@ -130,6 +130,7 @@ model_description.append(
         {  # HSN parameters
             'mass': 0.015,
             'heatCapacity': 376,
+            'heatCapacity': 887,  # TODO: which heatCapacity to use? Taken from second redefinition
             'heatGeneration': 0,
             'temperature': 22,
         },
@@ -141,44 +142,7 @@ model_description.append(
                     'absorptivity': 0,
                 },
                 [ ]  # links to other IFN
-            )
-        ]
-    )
-)
-
-model_description.append(
-
-    (  # HSN
-        'MS-Z+',  # HSN name
-        {  # HSN parameters
-            'mass': 0.03,
-            'heatCapacity': 887,
-            'heatGeneration': 0,
-            'temperature': 22,
-        },
-        [  # list of attached IFN
-            (
-                'MS-Z+-inner',  # IFN name
-                {  # IFN parameters
-                    'emissivity': 0.045,
-                    'absorptivity': 0,
-                },
-                [ ]  # links to other IFN
             ),
-        ]
-    )
-)
-
-model_description.append(
-    (
-        'MAGcoilY',
-        {
-            'mass': 0.015,
-            'heatCapacity': 376,
-            # heat generation is assumed 0 if not specified
-            'temperature': 22,
-        },
-        [
             (
                 'MAGcoilY-outercirc',
                 {
@@ -199,99 +163,6 @@ model_description.append(
                     ),
                 ]
             ),
-        ]
-    )
-)
-
-# model_description.append(
-
-#     (  # HSN
-#         'MS-Z+',  # HSN name
-#         {  # HSN parameters
-#             'mass': 0.03,
-#             'heatCapacity': 887,
-#             'heatGeneration': 0,
-#             'temperature': 22,
-#         },
-#         [  # list of attached IFN
-#             (
-#                 'MS-Z+-inner',  # IFN name
-#                 {  # IFN parameters
-#                     'emissivity': 0.045,
-#                     'absorptivity': 0,
-#                 },
-#                 [ ]  # links to other IFN
-#             ),
-#         ]
-#     )
-# )
-
-# model_description.append(
-#     (
-#         'MAGcoilY',
-#         {
-#             'mass': 0.015,
-#             'heatCapacity': 376,
-#             # heat generation is assumed 0 if not specified
-#             'temperature': 22,
-#         },
-#         [
-#             (
-#                 'MAGcoilY-outercirc',
-#                 {
-#                     'emissivity': 0.045,
-#                     'absorptivity': 0,
-#                 },
-#                 [
-#                     (
-#                         'MAGcoilY-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
-#                         [
-#                             links.RadiationLink,
-#                         ],
-#                         {
-#                             'radiationArea1': 0.000892,  # used by radiation calculations
-#                             'radiationArea2': 2.4,   # used by radiation calculations
-#                             'viewingFactor': 2.4,    # used by radiation calculations
-#                         }
-#                     ),
-#                 ]
-#             ),
-#         ]
-#     )
-# )
-
-model_description.append(
-    (  # HSN
-        'Batteries',  # HSN name
-        {  # HSN parameters
-            'mass': 0.032,
-            'heatCapacity': 887,
-            'heatGeneration': 0,
-            'temperature': 22,
-        },
-        [  # list of attached IFN
-            (
-                'BAT-curved',  # IFN name
-                {  # IFN parameters
-                    'emissivity': 0.045,
-                    'absorptivity': 0,
-                },
-                [ ]  # links to other IFN
-            ),
-        ]
-    )
-)
-
-model_description.append(
-    (
-        'MAGcoilY',
-        {
-            'mass': 0.015,
-            'heatCapacity': 887,
-            # heat generation is assumed 0 if not specified
-            'temperature': 22,
-        },
-        [
             (
                 'MAGcoilY-innercirc',
                 {
@@ -316,6 +187,27 @@ model_description.append(
     )
 )
 
+model_description.append(
+    (  # HSN
+        'Batteries',  # HSN name
+        {  # HSN parameters
+            'mass': 0.032,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [  # list of attached IFN
+            (
+                'BAT-curved',  # IFN name
+                {  # IFN parameters
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [ ]  # links to other IFN
+            ),
+        ]
+    )
+)
 
 model_description.append(
     (
