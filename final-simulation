@@ -271,32 +271,53 @@ model_description.append(
     )
 )
 
+
 model_description.append(
     (
         '3C2',
         {
             'mass': 0.02,
             'heatCapacity': 387,
-            'heatGeneration': 0,
+            'heatGeneration': 2,
             'temperature': 22,
         },
         [
             (
-                'EPS-top',
+                '3C2-top',
                 {
-                    'emissivity': 0.7,
+                    'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [
+                [ ]
+            ),
+            (
+                '3C2-bottom',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
                     (
-                        'Batteries-EPS-top', ('EPS', 'EPS-top'),
+                        '3C2-EPS-bottom', ('EPS', 'EPS-bottom'),
                         [
                             links.RadiationLink,
                         ],
                         {
                             'radiationArea1': 0.008,    # used by radiation calculations
-                            'radiationArea2': 0.004,    # used by radiation calculations
-                            'viewingFactor': 0.4,       # used by radiation calculation
+                            'radiationArea2': 0.008,    # used by radiation calculations
+                            'viewingFactor': 0.799,     # used by radiation calculation
+                        }
+                    ),
+                    (
+                        '3C2-EPS-bottom', ('EPS', 'EPS-bottom'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+#                             'conductionArea': 0.012,
+#                             'conductivity': 385,
+#                             'length': 0.11,
                         }
                     ),
                 ]
