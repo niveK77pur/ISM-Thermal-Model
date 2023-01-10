@@ -271,7 +271,6 @@ model_description.append(
     )
 )
 
-
 model_description.append(
     (
         '3C2',
@@ -318,6 +317,60 @@ model_description.append(
 #                             'conductionArea': 0.012,
 #                             'conductivity': 385,
 #                             'length': 0.11,
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)
+
+model_description.append(
+    (
+        'SSII',
+        {
+            'mass': 0.013,
+            'heatCapacity': 387,
+            'heatGeneration': 0.2,
+            'temperature': 22,
+        },
+        [
+            (
+                'EPS-top',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+            (
+                'EPS-bottom',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+                    (
+                        'Batteries-EPS-top', ('Batteries', 'BAT-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,    # used by radiation calculations
+                            'radiationArea2': 0.004,    # used by radiation calculations
+                            'viewingFactor': 0.4,       # used by radiation calculation
+                        }
+                    ),
+                    (
+                        'EPS-BAT-flat-face', ('Battery', 'BAT-flat-face'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+                            'conductionArea': 0.012,
+                            'conductivity': 385,
+                            'length': 0.11,
                         }
                     ),
                 ]
