@@ -106,6 +106,15 @@ model_description.append(
                     'emissivity': 0.045,
                     'absorptivity': 0,
                 },
+                [ ]  # links to other IFN
+            ),
+            (
+                'MS-Z+-outer',
+                {
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [
                 [
                     (
                         'MS-Z+-SSI-side', ('SSI', 'SSI-side'),
@@ -329,14 +338,14 @@ model_description.append(
     (
         'SSII',
         {
-            'mass': 0.013,
-            'heatCapacity': 387,
-            'heatGeneration': 0.2,
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
             'temperature': 22,
         },
         [
             (
-                'EPS-top',
+                'SSII-top',
                 {
                     'emissivity': 0.03,
                     'absorptivity': 0,
@@ -344,7 +353,7 @@ model_description.append(
                 [ ]
             ),
             (
-                'EPS-bottom',
+                'SSII-side',
                 {
                     'emissivity': 0.03,
                     'absorptivity': 0,
@@ -352,25 +361,49 @@ model_description.append(
                 [ ]
             ),
                     (
-                        'Batteries-EPS-top', ('Batteries', 'BAT-curved'),
+                        'SSII-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
-                            links.RadiationLink,
+                            links.ContactLink,
                         ],
                         {
-                            'radiationArea1': 0.008,    # used by radiation calculations
-                            'radiationArea2': 0.004,    # used by radiation calculations
-                            'viewingFactor': 0.4,       # used by radiation calculation
+                            'contactArea': 0.00044,    
+                            'resistance': 0.05,    
                         }
                     ),
+     (
+           'MS-Z-',
+            {
+                'mass': 0.03,
+                'heatCapacity': 887,
+                'heatGeneration': 0,
+                'temperature': 22,
+        },
+        [
+            (
+                'MS-Z--inner',
+                {
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [ ]
+             ),
+             (
+                'MS-Z--outer',
+                {
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+                [
                     (
-                        'EPS-BAT-flat-face', ('Battery', 'BAT-flat-face'),
+                        'SSII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
                         [
-                            links.ConductionLink,
+                            links.ContactLink,
                         ],
                         {
-                            'conductionArea': 0.012,
-                            'conductivity': 385,
-                            'length': 0.11,
+                            'contactArea': 0.00044,       # used by contact calculations
+                            'resistance': 0.05,           # used by contact calculations
                         }
                     ),
                 ]
@@ -378,6 +411,8 @@ model_description.append(
         ]
     )
 )
+
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
