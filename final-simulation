@@ -115,7 +115,6 @@ model_description.append(
                     'absorptivity': 0,
                 },
                 [
-                [
                     (
                         'MS-Z+-SSI-side', ('SSI', 'SSI-side'),
                         [
@@ -250,8 +249,7 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
+                [
                     (
                         'Batteries-EPS-top', ('Batteries', 'BAT-curved'),
                         [
@@ -304,8 +302,7 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
+                [
                     (
                         '3C2-EPS-bottom', ('EPS', 'EPS-bottom'),
                         [
@@ -366,8 +363,8 @@ model_description.append(
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.00044,    
-                            'resistance': 0.05,    
+                            'contactArea': 0.00044,
+                            'resistance': 0.05,
                         }
                     ),
      (
@@ -436,19 +433,17 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
+                [
                     (
                         'SSIII-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.00044,    
-                            'resistance': 0.05,    
+                            'contactArea': 0.00044,
+                            'resistance': 0.05,
                         }
                     ),
-                [
                     (
                         'SSIII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
                         [
@@ -490,8 +485,7 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
+                [
                     (
                         'Panel-Z--BAT-curved', ('Batteries', 'BAT-curved'),
                         [
@@ -500,10 +494,9 @@ model_description.append(
                         {
                              'radiationArea1': 0.008,    # used by radiation calculations
                              'radiationArea2': 0.004,    # used by radiation calculations
-                             'viewingFactor': 0.15,     
+                             'viewingFactor': 0.15,
                         }
                     ),
-                [
                     (
                         'Panel-Z--EPS-top', ('EPS', 'EPS-top'),
                         [
@@ -515,16 +508,14 @@ model_description.append(
                             'viewingFactor': 0.15,
                         }
                     ),
-                ]
-            [
                     (
                         'Panel-Z--3C2-top', ('3C2', '3C2-top'),
                         [
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.008,      
-                            'radiationArea2': 0.004,          
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.004,
                             'viewingFactor': 0.06,
                         }
                     ),
@@ -533,7 +524,7 @@ model_description.append(
         ]
     )
 )
-            
+
 model_description.append(
     (
         'Panel-X+',
@@ -558,8 +549,7 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
+                [
                     (
                         'Panel-X+-BAT-curved', ('Batteries', 'BAT-curved'),
                         [
@@ -568,31 +558,28 @@ model_description.append(
                         {
                              'radiationArea1': 0.008,    # used by radiation calculations
                              'radiationArea2': 0.004,    # used by radiation calculations
-                             'viewingFactor': 0.15,     
+                             'viewingFactor': 0.15,
                         }
                     ),
-                [
                     (
                         'Panel-X+-EPS-top', ('EPS', 'EPS-top'),
                         [
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.008,       
-                            'radiationArea2': 0.004,         
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.004,
                             'viewingFactor': 0.15,
                         }
                     ),
-                ]
-            [
                     (
                         'Panel-X+-MS-Z--outer', ('MS-Z-', 'MS-Z--outer'),
                         [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.0004,      
-                            'resistance': 0.05,          
+                            'contactArea': 0.0004,
+                            'resistance': 0.05,
                         }
                     ),
                 ]
@@ -600,7 +587,7 @@ model_description.append(
         ]
     )
 )
-            
+
 model_description.append(
     (
         'Panel-Z+',
@@ -625,53 +612,47 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
+                [
                     (
                         'Panel-Z+-BAT-curved', ('Batteries', 'BAT-curved'),
                         [
                             links.RadiationLink,
                         ],
                         {
-                             'radiationArea1': 0.008,    
-                             'radiationArea2': 0.004,    
-                             'viewingFactor': 0.15,     
+                             'radiationArea1': 0.008,
+                             'radiationArea2': 0.004,
+                             'viewingFactor': 0.15,
                         }
                     ),
-                [
                     (
                         'Panel-Z+-EPS-top', ('EPS', 'EPS-top'),
                         [
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.008,       
-                            'radiationArea2': 0.004,          
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.004,
                             'viewingFactor': 0.15,
                         }
                     ),
-                ]
-            [
                     (
                         'Panel-Z+-MS-Z+-outer', ('MS-Z-', 'MS-Z--outer'),
                         [
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.008,      
+                            'radiationArea1': 0.008,
                             'radiationArea2': 0.008,
                             'viewingFactor': 0.95,
                         }
                     ),
-                ]
-                        [
                     (
                         'Panel-Z+-3C2-top', ('3C2', '3C2-top'),
                         [
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.008,      
+                            'radiationArea1': 0.008,
                             'radiationArea2': 0.0053,
                             'viewingFactor': 0.17,
                         }
@@ -681,7 +662,7 @@ model_description.append(
         ]
     )
 )
-            
+
 model_description.append(
     (
         'SSIV',
@@ -706,19 +687,17 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
+                [
                     (
                         'SSIV-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.00044,    
-                            'resistance': 0.05,    
+                            'contactArea': 0.00044,
+                            'resistance': 0.05,
                         }
                     ),
-                [
                     (
                         'SSIV-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
                         [
@@ -751,19 +730,17 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-             ),
+                [
                     (
                         'MS-Z+-SSV-side', ('SSV', 'SSV-side'),
                         [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.00044,    
-                            'resistance': 0.05,    
+                            'contactArea': 0.00044,
+                            'resistance': 0.05,
                         }
                     ),
-                [
                     (
                         'MS-Z--SSV-side', ('SSV', 'SSV-side'),
                         [
@@ -779,7 +756,7 @@ model_description.append(
         ]
     )
 )
-           
+
 model_description.append(
     (
         'SSVI',
@@ -796,19 +773,17 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-             ),
+                [
                     (
                         'MS-Z+-SSVI-side', ('SSV', 'SSVI-side'),
                         [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.00044,    
-                            'resistance': 0.05,    
+                            'contactArea': 0.00044,
+                            'resistance': 0.05,
                         }
                     ),
-                [
                     (
                         'MS-Z--SSVI-side', ('SSVI', 'SSVI-side'),
                         [
@@ -824,7 +799,7 @@ model_description.append(
         ]
     )
 )
-        
+
 model_description.append(
     (
         'RW',
@@ -849,8 +824,7 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
+                [
                     (
                         'Panel-Z+-RW-curved', ('RW', 'RW-curved'),
                         [
@@ -859,17 +833,16 @@ model_description.append(
                         {
                             'radiationArea1': 0.002,
                             'radiationArea2': 0.026,
-                            'viewingFactor': 0.15,    
+                            'viewingFactor': 0.15,
                         }
                     ),
-                [
                     (
                         'Panel-X+-RW-curved', ('RW', 'RW-curved'),
                         [
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.002,      
+                            'radiationArea1': 0.002,
                             'radiationArea2': 0.026,
                             'viewingFactor': 0.05,
                         }
@@ -879,16 +852,16 @@ model_description.append(
         ]
     )
 )
-       
-            
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-thermalmodel = tm.ThermalModel(
-    simulation_duration=0.1666 * 60,  # seconds
-    timestep=1,  # seconds
-    model_description=model_description,
+thermalmodel=tm.ThermalModel(
+    simulation_duration= 0.1666 * 60,  # seconds
+    timestep= 1,  # seconds
+    model_description= model_description,
 )
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
