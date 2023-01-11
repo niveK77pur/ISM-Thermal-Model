@@ -734,7 +734,7 @@ model_description.append(
         ]
     )
 )
-           
+
 model_description.append(
     (
         'SSV',
@@ -779,7 +779,6 @@ model_description.append(
         ]
     )
 )
-
            
 model_description.append(
     (
@@ -824,7 +823,63 @@ model_description.append(
             ),
         ]
     )
-)           
+)
+        
+model_description.append(
+    (
+        'RW',
+        {
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'RW-curved',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+            (
+                'RW-bottom',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+                    (
+                        'Panel-Z+-RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.002,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.15,    
+                        }
+                    ),
+                [
+                    (
+                        'Panel-X+-RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.002,      
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.05,
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)
+       
             
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
