@@ -196,7 +196,7 @@ class ThermalModel():
                 nameTargetIFN,
                 self.heatStorageNodes[nameHSN].interfaces[nameIFN],
                 [ ManualLink ],
-                { 'func': lambda: -1 * self.heatStorageNodes[nameHSN].interfaces[nameIFN].computeHeatExchange() }
+                { 'func': lambda: -1 * self.heatStorageNodes[nameHSN].interfaces[nameIFN].interfaceLinks[nameLink].computeHeatExchange() }
             )
 
     def simulate(self):
