@@ -412,6 +412,58 @@ model_description.append(
     )
 )
 
+model_description.append(
+    (
+        'SSIII',
+        {
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'SSIII-side',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+            (
+                'SSIII-bottom',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+                    (
+                        'SSIII-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,    
+                            'resistance': 0.05,    
+                        }
+                    ),
+                [
+                    (
+                        'SSII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,       # used by contact calculations
+                            'resistance': 0.05,           # used by contact calculations
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
