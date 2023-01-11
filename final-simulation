@@ -450,7 +450,7 @@ model_description.append(
                     ),
                 [
                     (
-                        'SSII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        'SSIII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
                         [
                             links.ContactLink,
                         ],
@@ -465,6 +465,74 @@ model_description.append(
     )
 )
 
+
+model_description.append(
+    (
+        'Panel-Z-',
+        {
+            'mass': 0.03,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'Panel-Z-inner',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+            (
+                'Panel-Z-outer',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+                    (
+                        'Panel-Z--BAT-curved', ('Batteries', 'BAT-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                             'radiationArea1': 0.008,    # used by radiation calculations
+                             'radiationArea2': 0.004,    # used by radiation calculations
+                             'viewingFactor': 0.15,     
+                        }
+                    ),
+                [
+                    (
+                        'Panel-Z--EPS-top', ('EPS', 'EPS-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,       # used by contact calculations
+                            'radiationArea2': 0.004,          # used by contact calculations
+                            'viewingFactor': 0.15,
+                        }
+                    ),
+                ]
+            [
+                    (
+                        'Panel-Z--3C2-top', ('3C2', '3C2-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,      
+                            'radiationArea2': 0.004,          
+                            'viewingFactor': 0.06,
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
