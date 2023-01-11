@@ -734,7 +734,7 @@ model_description.append(
         ]
     )
 )
-            
+           
 model_description.append(
     (
         'SSV',
@@ -780,6 +780,52 @@ model_description.append(
     )
 )
 
+           
+model_description.append(
+    (
+        'SSVI',
+        {
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'SSVI-side',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+             ),
+                    (
+                        'MS-Z+-SSVI-side', ('SSV', 'SSVI-side'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,    
+                            'resistance': 0.05,    
+                        }
+                    ),
+                [
+                    (
+                        'MS-Z--SSVI-side', ('SSVI', 'SSVI-side'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,       # used by contact calculations
+                            'resistance': 0.05,           # used by contact calculations
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)           
+            
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
