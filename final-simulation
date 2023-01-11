@@ -578,8 +578,8 @@ model_description.append(
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.008,       # used by contact calculations
-                            'radiationArea2': 0.004,          # used by contact calculations
+                            'radiationArea1': 0.008,       
+                            'radiationArea2': 0.004,         
                             'viewingFactor': 0.15,
                         }
                     ),
@@ -633,8 +633,8 @@ model_description.append(
                             links.RadiationLink,
                         ],
                         {
-                             'radiationArea1': 0.008,    # used by radiation calculations
-                             'radiationArea2': 0.004,    # used by radiation calculations
+                             'radiationArea1': 0.008,    
+                             'radiationArea2': 0.004,    
                              'viewingFactor': 0.15,     
                         }
                     ),
@@ -645,8 +645,8 @@ model_description.append(
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.008,       # used by contact calculations
-                            'radiationArea2': 0.004,          # used by contact calculations
+                            'radiationArea1': 0.008,       
+                            'radiationArea2': 0.004,          
                             'viewingFactor': 0.15,
                         }
                     ),
@@ -674,6 +674,59 @@ model_description.append(
                             'radiationArea1': 0.008,      
                             'radiationArea2': 0.0053,
                             'viewingFactor': 0.17,
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)
+            
+model_description.append(
+    (
+        'SSIV',
+        {
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'SSIV-side',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+            (
+                'SSIV-top',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+                    (
+                        'SSIV-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,    
+                            'resistance': 0.05,    
+                        }
+                    ),
+                [
+                    (
+                        'SSIV-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,       # used by contact calculations
+                            'resistance': 0.05,           # used by contact calculations
                         }
                     ),
                 ]
