@@ -477,7 +477,7 @@ model_description.append(
         },
         [
             (
-                'Panel-Z-inner',
+                'Panel-Z--inner',
                 {
                     'emissivity': 0.03,
                     'absorptivity': 0,
@@ -485,7 +485,7 @@ model_description.append(
                 [ ]
             ),
             (
-                'Panel-Z-outer',
+                'Panel-Z--outer',
                 {
                     'emissivity': 0.03,
                     'absorptivity': 0,
@@ -526,6 +526,73 @@ model_description.append(
                             'radiationArea1': 0.008,      
                             'radiationArea2': 0.004,          
                             'viewingFactor': 0.06,
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)
+            
+model_description.append(
+    (
+        'Panel-X+',
+        {
+            'mass': 0.03,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'Panel-X+-inner',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+            (
+                'Panel-X+-outer',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+                    (
+                        'Panel-X+-BAT-curved', ('Batteries', 'BAT-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                             'radiationArea1': 0.008,    # used by radiation calculations
+                             'radiationArea2': 0.004,    # used by radiation calculations
+                             'viewingFactor': 0.15,     
+                        }
+                    ),
+                [
+                    (
+                        'Panel-X+-EPS-top', ('EPS', 'EPS-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,       # used by contact calculations
+                            'radiationArea2': 0.004,          # used by contact calculations
+                            'viewingFactor': 0.15,
+                        }
+                    ),
+                ]
+            [
+                    (
+                        'Panel-X+-MS-Z--outer', ('MS-Z-', 'MS-Z--outer'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.0004,      
+                            'resistance': 0.05,          
                         }
                     ),
                 ]
