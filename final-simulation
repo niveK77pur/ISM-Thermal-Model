@@ -284,7 +284,7 @@ model_description.append(
         {
             'mass': 0.02,
             'heatCapacity': 387,
-            'heatGeneration': 2,
+            'heatGeneration': 1.33,
             'temperature': 22,
         },
         [
@@ -1018,6 +1018,109 @@ model_description.append(
         ]
     )
 )
+
+model_description.append(
+    (
+        'MAG-Zcoil',
+        {
+            'mass': 0.01,
+            'heatCapacity': 389,
+            'heatGeneration': 0,
+            'temperature': 22,
+        }
+        [
+            (
+                'MAG-Zcoil-inner',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                }
+                [ ]
+            ),
+            (
+                'MAG-Zcoil-outer',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                }
+                [ ]
+            ),
+        ]
+    ),
+    
+    (
+        'MAG-Zarm',
+        {
+            'mass': 0.01
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'MAG-Zarm-outer',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'MAG-Zcoil-MAG-Zarm-outer', ('MAG-Zarm', 'MAG-Zarm-outer'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.004,
+                            'resistance': 0.05,
+                        }
+                    ),
+                    (
+                        'Panel-Z--MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.36,
+                        }
+                    ),
+                    (
+                        'ZXMAG-PCB-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.006,
+                            'viewingFactor': 0.011,
+                        }
+                    ),
+                    (
+                        'Panel-Z+-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ]
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.36,
+                        }
+                    ),
+                    (
+                        'ZXMAG-PCB-MAG-Zarm-outer', ('MAG-Zarm', 'MAG-Zarm-outer'),
+                        [
+                            links.ConductionLink,
+                        ]
+                        {
+                            'conductionArea': 0.00014,
+                            'conductivity': 237,
+                            'length': 0.008,
+                        }
+                    ),
+                                                     
+                
+        
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
