@@ -139,33 +139,6 @@ class ThermalModel():
             'time', *[ hsnName for hsnName, _ in self.IDmap['HSN'] ],
         ])
 
-        # TODO: populate arrays using known data
-        # TODO: when adding data for each timestep in 'simulate()', gradually increase the dimension (the one saying 1 below)
-        # TODO: suggestion: consider not using matrices. They may not be required if only temperature readings are of interest.
-        self.IFNHeatExchanges: np.ndarray = np.zeros((self.counters['IFN'], self.counters['IFN'], 1))
-        self.HSNHeatExchanges: np.ndarray = np.zeros((self.counters['HSN'], self.counters['HSN'], 1))
-        self.HSNTemperatures: np.ndarray = np.zeros((self.counters['HSN'], 1))
-
-    def ID2label(self, _class: str, ID: int) -> str:
-        """Convert ID from element class to corresponding label string
-            _class: String value containing one of the dict keys of self.IDmap
-        """
-        for idmap in self.IDmap[_class]:
-            name, givenID = idmap
-            if ID == givenID:
-                return name
-        raise KeyError(f'ID {ID} not found in list of class {_class}')
-
-    def label2ID(self, _class: str, label: str) -> int:
-        """Convert label from element class to corresponding ID
-            _class: String value containing one of the dict keys of self.IDmap
-        """
-        for idmap in self.IDmap[_class]:
-            givenName, ID = idmap
-            if label == givenName:
-                return ID
-        raise KeyError(f'Name {label} not found in list of class {_class}')
-
     def _addHeatStorageNodes(self, nodes: List[Tuple[str, Dict]]):
         for nodeHSN in nodes:
             nameHSN, parameters = nodeHSN
@@ -205,12 +178,8 @@ class ThermalModel():
             )
 
     def simulate(self):
-        # TODO: manage data using the matrices?
-        # TODO: suggestion: since only temperatures are of interest in the end, we might completely circumvent using matrices
         # print('Counters:', self.counters)
         # print('IDs:', self.IDmap)
-        # print('ID2label() example:', self.ID2label('IFN', 2))
-        # print('label2ID() example:', self.label2ID('HSN', 'Battery'))
 
         t = 0
         temperatureReading: Dict[str, List[float]] = { c: [] for c in self.temperatureReadings.columns }
@@ -221,20 +190,12 @@ class ThermalModel():
                 name, HSN = heatStorageNode
                 temperature = HSN.computeTemperature()
                 temperatureReading[name].append(temperature)
-                # TODO: create new matrix with new values?
-                # TODO: append new matrix to existing matrix (see in '__init__()')?
-                # TODO: suggestion: abstract above steps into new function to declutter this main loop (i.e. 'self._createMatrices()' or 'self._addTemperatureReading(...)')
         self._addTemperatureReading(temperatureReading)
         print(self.temperatureReadings)
 
     def save(self, filename='thermalmodel.csv'):
         print(f'Saving data to file {filename}')
         self.temperatureReadings.to_csv(filename, index=False)
-
-    def _createMatrices(self):
-        # TODO: this might serve as a helper function to create matrices
-        # TODO: this might serve as a helper function to add matrices and increase the dimension after each timestep
-        raise NotImplementedError()
 
     def _addTemperatureReading(self, reading: Dict[str, List[float]]):
         self.temperatureReadings = pd.concat(
