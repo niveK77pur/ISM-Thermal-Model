@@ -32,7 +32,7 @@ model_description = [
     (
         'SSI',
         {
-            'mass': 0.01,
+            'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -94,7 +94,7 @@ model_description.append(
     (
         'MS-Z+',
         {
-            'mass': 0.03,
+            'mass': 0.07,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -335,7 +335,7 @@ model_description.append(
     (
         'SSII',
         {
-            'mass': 0.01,
+            'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -370,7 +370,7 @@ model_description.append(
             (
                 'MS-Z-',
                 {
-                    'mass': 0.03,
+                    'mass': 0.07,
                     'heatCapacity': 887,
                     'heatGeneration': 0,
                     'temperature': 22,
@@ -413,7 +413,7 @@ model_description.append(
     (
         'SSIII',
         {
-            'mass': 0.01,
+            'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -465,7 +465,7 @@ model_description.append(
     (
         'Panel-Z-',
         {
-            'mass': 0.03,
+            'mass': 0.08,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -529,7 +529,7 @@ model_description.append(
     (
         'Panel-X+',
         {
-            'mass': 0.03,
+            'mass': 0.08,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -592,7 +592,7 @@ model_description.append(
     (
         'Panel-Z+',
         {
-            'mass': 0.03,
+            'mass': 0.08,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -667,7 +667,7 @@ model_description.append(
     (
         'SSIV',
         {
-            'mass': 0.01,
+            'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -718,7 +718,7 @@ model_description.append(
     (
         'SSV',
         {
-            'mass': 0.01,
+            'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -761,7 +761,7 @@ model_description.append(
     (
         'SSVI',
         {
-            'mass': 0.01,
+            'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -949,7 +949,80 @@ model_description.append(
         ]
     )
 )
-           
+
+model_description.append(
+    (
+        'ZXMAG-PCB',
+        {
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'RW-PCB-top',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+            (
+                'RW-PCB-bottom',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'RW-RW-PCB-top', ('RW-PCB', 'RW-PCB-top'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.0016,
+                            'resistance': 0.05,
+                        }
+                    ),
+                    (
+                        'Panel-X+-RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.002,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.05,
+                        }
+                    ),
+                    (
+                        'Panel-Z--RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.002,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.05
+                        }
+                    ),
+                    (
+                        'Panel-X--RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 8.51,
+                            'radiationArea2': 3.8,
+                            'viewingFactor': 0.05,
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
