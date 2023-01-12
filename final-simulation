@@ -367,22 +367,22 @@ model_description.append(
                             'resistance': 0.05,
                         }
                     ),
-     (
-           'MS-Z-',
-            {
-                'mass': 0.03,
-                'heatCapacity': 887,
-                'heatGeneration': 0,
-                'temperature': 22,
-        },
-        [
             (
-                'MS-Z--inner',
+                'MS-Z-',
                 {
-                    'emissivity': 0.045,
-                    'absorptivity': 0,
-                },
-                [ ]
+                    'mass': 0.03,
+                    'heatCapacity': 887,
+                    'heatGeneration': 0,
+                    'temperature': 22,
+                 },
+                 [
+                    (
+                        'MS-Z--inner',
+                        {
+                            'emissivity': 0.045,
+                            'absorptivity': 0,
+                        },
+                        [ ]
              ),
              (
                 'MS-Z--outer',
@@ -391,7 +391,7 @@ model_description.append(
                     'absorptivity': 0,
                 },
                 [ ]
-            ),
+             ),
                 [
                     (
                         'SSII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
@@ -864,6 +864,81 @@ model_description.append(
                             links.RadiationLink,
                         ],
                         {
+                            'radiationArea1': 0.002,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.05,
+                        }
+                    ),
+                ]
+            ),
+        ]
+    )
+)
+
+
+model_description.append(
+    (
+        'RW-PCB',
+        {
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'RW-PCB-top',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [ ]
+            ),
+            (
+                'RW-PCB-bottom',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'RW-RW-PCB-top', ('RW-PCB', 'RW-PCB-top'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.0016,
+                            'resistance': 0.05,
+                        }
+                    ),
+                    (
+                        'Panel-X+-RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.002,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.05,
+                        }
+                    ),
+                    (
+                        'Panel-Z--RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.002,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.05
+                        }
+                    ),
+                    (
+                        'Panel-X--RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
                             'radiationArea1': 8.51,
                             'radiationArea2': 3.8,
                             'viewingFactor': 0.05,
@@ -874,7 +949,7 @@ model_description.append(
         ]
     )
 )
-
+           
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
