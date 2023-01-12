@@ -217,7 +217,6 @@ class ThermalModel():
         while t < self.duration:
             t += self.timestep
             temperatureReading['time'].append(t)
-            print(f"=== Time: {t} ===")
             for heatStorageNode in self.heatStorageNodes.items():
                 name, HSN = heatStorageNode
                 temperature = HSN.computeTemperature()
@@ -225,7 +224,6 @@ class ThermalModel():
                 # TODO: create new matrix with new values?
                 # TODO: append new matrix to existing matrix (see in '__init__()')?
                 # TODO: suggestion: abstract above steps into new function to declutter this main loop (i.e. 'self._createMatrices()' or 'self._addTemperatureReading(...)')
-                print(f'{name} temperature: {temperature}')
         self._addTemperatureReading(temperatureReading)
         print(self.temperatureReadings)
 
