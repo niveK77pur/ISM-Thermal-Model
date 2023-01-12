@@ -847,6 +847,28 @@ model_description.append(
                             'viewingFactor': 0.05,
                         }
                     ),
+                    (
+                        'Panel-Z--RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.002,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.05
+                        }
+                    ),
+                    (
+                        'Panel-X--RW-curved', ('RW', 'RW-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 8.51,
+                            'radiationArea2': 3.8,
+                            'viewingFactor': 0.05,
+                        }
+                    ),
                 ]
             ),
         ]
