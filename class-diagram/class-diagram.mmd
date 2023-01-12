@@ -6,11 +6,7 @@ class ThermalModel {
     +Dict~str, HeatStorageNode~ addHeatStorageNodes
     +Dict~str, int~ counters
     +Dict~str, List[Tuple[str, int]]~ IDmap
-    +3DArray IFNHeatExchanges
-    +3DArray HSNHeatExchanges
-    +2DArray HSNTemperatures
-    +ID2label(_class, ID) str
-    +label2ID(_class, label) int
+    +pandas.Dataframe temperatureReadings
     -addHeatStorageNodes(List~(name, parameters)~ nodes)
     -addInterfaceNodes(nameHSN, List~(name, parameters)~ nodes)
     -addInterfaceLinks(nameHSN, nameIFN, List~(name, target, linkeTypes, parameters)~ links)

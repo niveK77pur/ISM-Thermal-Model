@@ -122,4 +122,4 @@ thermalmodel = tm.ThermalModel(
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 thermalmodel.simulate()
-# thermalmodel.save()
+thermalmodel.save()

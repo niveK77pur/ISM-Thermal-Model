@@ -27,3 +27,8 @@ jobs:
           python -m pip install pipenv
           pipenv install
       - run: pipenv run python final-simulation
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: thermalmodel
+          path: thermalmodel.csv
