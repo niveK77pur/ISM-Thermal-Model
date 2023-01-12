@@ -1100,7 +1100,7 @@ model_description.append(
                         'Panel-Z+-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
                         [
                             links.RadiationLink,
-                        ]
+                        ],
                         {
                             'radiationArea1': 0.005,
                             'radiationArea2': 0.026,
@@ -1123,7 +1123,51 @@ model_description.append(
         ]
     ),
 )
-                                                     
+
+model_description.append(
+    (
+        'MAG-Xarm',
+        {
+            'mass': 0.01,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': 22,
+        },
+        [
+            (
+                'MAG-Xarm-outer',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'ZXMAG-PCB-MAG-Xarm-outer', ('MAG-Xarm', 'MAG-Xarm-outer'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+                            'conductionArea': 0.000142,
+                            'conductivity': 237,
+                            'length': 0.008,
+                        }
+                    ),
+                    (
+                        'MAG-Xcoil-MAG-Xarm-outer', ('MAG-Xarm', 'MAG-Xarm-outer'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.004,
+                            'resistance': 0.05,
+                        }
+                    ),
+                ]
+            ),
+        ]
+    ),
+)
+                     
                 
         
 
