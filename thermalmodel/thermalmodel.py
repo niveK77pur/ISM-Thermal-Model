@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Tuple, Type
 import numpy as np
+import pandas as pd
 import itertools
 
 from .nodes import HeatStorageNode, LinkType
@@ -134,6 +135,10 @@ class ThermalModel():
                 self.IDmap['links'] += [ (nameLink, next(linkID)) for (nameLink, _, _, _) in linksIFN ]
         del linkID
 
+        self.temperatureReadings: pd.DataFrame = pd.DataFrame(columns=[
+            'time', *[ hsnName for hsnName, _ in self.IDmap['HSN'] ],
+        ])
+
         # TODO: populate arrays using known data
         # TODO: when adding data for each timestep in 'simulate()', gradually increase the dimension (the one saying 1 below)
         # TODO: suggestion: consider not using matrices. They may not be required if only temperature readings are of interest.
@@ -208,27 +213,33 @@ class ThermalModel():
         # print('label2ID() example:', self.label2ID('HSN', 'Battery'))
 
         t = 0
+        temperatureReading: Dict[str, List[float]] = { c: [] for c in self.temperatureReadings.columns }
         while t < self.duration:
             t += self.timestep
+            temperatureReading['time'].append(t)
             print(f"=== Time: {t} ===")
             for heatStorageNode in self.heatStorageNodes.items():
                 name, HSN = heatStorageNode
                 temperature = HSN.computeTemperature()
+                temperatureReading[name].append(temperature)
                 # TODO: create new matrix with new values?
                 # TODO: append new matrix to existing matrix (see in '__init__()')?
-                # TODO: if only temperature is recorded, create arrays storing temperature at each timestep
                 # TODO: suggestion: abstract above steps into new function to declutter this main loop (i.e. 'self._createMatrices()' or 'self._addTemperatureReading(...)')
                 print(f'{name} temperature: {temperature}')
+        self._addTemperatureReading(temperatureReading)
+        print(self.temperatureReadings)
 
-    def save(self, filename='thermalmodel'):
-        # TODO: extract temperature readings (and other data of interest)
-        # TODO: write data to a file (CSV) to avoid re-running the script to get the numbers
-        raise NotImplementedError()
+    def save(self, filename='thermalmodel.csv'):
+        print(f'Saving data to file {filename}')
+        self.temperatureReadings.to_csv(filename, index=False)
 
     def _createMatrices(self):
         # TODO: this might serve as a helper function to create matrices
         # TODO: this might serve as a helper function to add matrices and increase the dimension after each timestep
         raise NotImplementedError()
 
-    def _addTemperatureReading(self, temperature: float):
-        raise NotImplementedError()
+    def _addTemperatureReading(self, reading: Dict[str, List[float]]):
+        self.temperatureReadings = pd.concat(
+            [ self.temperatureReadings, pd.DataFrame(reading) ],
+            ignore_index=True,
+        )
