@@ -370,14 +370,14 @@ model_description.append(
                     'temperature': 22,
                  },
                  [
-                    (
-                        'MS-Z--inner',
-                        {
-                            'emissivity': 0.045,
-                            'absorptivity': 0,
-                        },
-                        [ ],
-                    ),
+                    # (
+                    #     'MS-Z--inner', (<MISSING LINK>)  # TODO: add missing link
+                    #     {
+                    #         'emissivity': 0.045,
+                    #         'absorptivity': 0,
+                    #     },
+                    #     [ ],
+                    # ),
                 ]
              ),
              (
