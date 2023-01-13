@@ -63,7 +63,18 @@ model_description = [
                     'emissivity': 0.045,
                     'absorptivity': 0,
                 },
-                [ ]
+                [
+                    (
+                        'SSI-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,       # used by contact calculations
+                            'resistance': 0.05,           # used by contact calculations
+                        }
+                    )
+                ]
             ),
             (
                 'SSI-bottom',
@@ -73,7 +84,7 @@ model_description = [
                 },
                 [
                     (
-                        'SSI-MAGcoilY-top', ('MAGcoilY', 'MAGcoilY-top'),
+                        'SSI-MAG-Ycoil-top', ('MAG-Ycoil', 'MAG-Ycoil-top'),
                         [
                             links.RadiationLink,
                         ],
@@ -158,7 +169,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MAGcoilY-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        'MAG-Ycoil-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
                             links.RadiationLink,
                         ],
@@ -171,14 +182,14 @@ model_description.append(
                 ]
             ),
             (
-                'MAGcoilY-innercirc',
+                'MAG-Ycoil-innercirc',
                 {
-                    'emissivity': 0.045,
+                    'emissivity': 0.03,
                     'absorptivity': 0,
                 },
                 [
                     (
-                        'MAGcoilY-MS-Z+-inner2', ('MS-Z+', 'MS-Z+-inner'),  # TODO: duplicate IFN key entry leads to error; rename to be unique
+                        'MAG-Ycoil-BAT-curved', ('Batteries', 'BAT-curved'),
                         [
                             links.RadiationLink,
                         ],
@@ -198,8 +209,8 @@ model_description.append(
     (  # HSN
         'Batteries',  # HSN name
         {  # HSN parameters
-            'mass': 0.032,
-            'heatCapacity': 887,
+            'mass': 0.096,
+            'heatCapacity': 1040,
             'heatGeneration': 0,
             'temperature': 22,
         },
@@ -207,7 +218,7 @@ model_description.append(
             (
                 'BAT-curved',  # IFN name
                 {  # IFN parameters
-                    'emissivity': 0.045,
+                    'emissivity': 0.87,
                     'absorptivity': 0,
                 },
                 [ ]  # links to other IFN
@@ -215,7 +226,7 @@ model_description.append(
             (
                 'BAT-flat-face',
                 {
-                    'emissivity': 0.045,
+                    'emissivity': 0.87,
                     'absorptivity': 0,
                 },
                 [ ]
@@ -266,9 +277,9 @@ model_description.append(
                             links.ConductionLink,
                         ],
                         {
-                            'conductionArea': 0.012,
-                            'conductivity': 385,
-                            'length': 0.11,
+                            'conductionArea': 0.000064,
+                            'conductivity': 398,
+                            'length': 0.011,
                         }
                     ),
                 ]
