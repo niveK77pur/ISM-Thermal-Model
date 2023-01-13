@@ -262,7 +262,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'EPS-BAT-flat-face', ('Battery', 'BAT-flat-face'),
+                        'EPS-BAT-flat-face', ('Batteries', 'BAT-flat-face'),
                         [
                             links.ConductionLink,
                         ],
