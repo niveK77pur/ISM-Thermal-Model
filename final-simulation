@@ -772,7 +772,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MS-Z+-SSVI-side', ('SSV', 'SSVI-side'),
+                        'MS-Z+-SSVI-side', ('SSV', 'SSV-side'),
                         [
                             links.ContactLink,
                         ],
@@ -782,7 +782,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'MS-Z--SSVI-side', ('SSVI', 'SSVI-side'),
+                        'MS-Z--SSVI-side', ('SSV', 'SSV-side'),
                         [
                             links.ContactLink,
                         ],
