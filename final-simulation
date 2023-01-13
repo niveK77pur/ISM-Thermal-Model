@@ -307,22 +307,15 @@ model_description.append(
                         '3C2-EPS-bottom', ('EPS', 'EPS-bottom'),
                         [
                             links.RadiationLink,
+                            links.ConductionLink,
                         ],
                         {
                             'radiationArea1': 0.008,    # used by radiation calculations
                             'radiationArea2': 0.008,    # used by radiation calculations
                             'viewingFactor': 0.799,     # used by radiation calculation
-                        }
-                    ),
-                    (
-                        '3C2-EPS-bottom', ('EPS', 'EPS-bottom'),
-                        [
-                            links.ConductionLink,
-                        ],
-                        {
-#                             'conductionArea': 0.012,
-#                             'conductivity': 385,
-#                             'length': 0.11,
+                            'conductionArea': -1,  # TODO: add missing value
+                            'conductivity': -1,    # TODO: add missing value
+                            'length': -1,          # TODO: add missing value
                         }
                     ),
                 ]
