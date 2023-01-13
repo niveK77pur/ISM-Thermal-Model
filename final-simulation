@@ -12,7 +12,7 @@ model_description = [
     (  # HSN
         'Antenna-Plate',  # HSN name
         {  # HSN parameters
-            'mass': 0.01,
+            'mass': 0.02,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -51,8 +51,8 @@ model_description = [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.003,       # used by contact calculations
-                            'resistance': 0.05,         # used by contact calculations
+                            'contactArea': 0.003,
+                            'resistance': 0.05,
                         }
                     ),
                 ]
@@ -78,9 +78,9 @@ model_description = [
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.002,  # used by radiation calculations
-                            'radiationArea2': 0.002,  # used by radiation calculations
-                            'viewingFactor': 0.8,     # used by radiation calculations
+                            'radiationArea1': 0.002,
+                            'radiationArea2': 0.002,
+                            'viewingFactor': 0.8,
                         }
                     ),
                 ]
@@ -134,27 +134,26 @@ model_description.append(
 model_description.append(
 
     (  # HSN
-        'MAGcoilY',  # HSN name
+        'MAG-Ycoil',  # HSN name
         {  # HSN parameters
-            'mass': 0.015,
-            'heatCapacity': 376,
-            'heatCapacity': 887,  # TODO: which heatCapacity to use? Taken from second redefinition
+            'mass': 0.14,
+            'heatCapacity': 387,
             'heatGeneration': 0,
             'temperature': 22,
         },
         [  # list of attached IFN
             (
-                'MAGcoilY-top',  # IFN name
+                'MAG-Ycoil-top',  # IFN name
                 {  # IFN parameters
-                    'emissivity': 0.045,
+                    'emissivity': 0.03,
                     'absorptivity': 0,
                 },
                 [ ]  # links to other IFN
             ),
             (
-                'MAGcoilY-outercirc',
+                'MAG-Ycoil-outercirc',
                 {
-                    'emissivity': 0.045,
+                    'emissivity': 0.03,
                     'absorptivity': 0,
                 },
                 [
