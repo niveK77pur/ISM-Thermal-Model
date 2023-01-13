@@ -355,8 +355,7 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
+                [
                     (
                         'SSII-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
@@ -367,6 +366,8 @@ model_description.append(
                             'resistance': 0.05,
                         }
                     ),
+                ]
+            ),
             (
                 'MS-Z-',
                 {
@@ -382,7 +383,9 @@ model_description.append(
                             'emissivity': 0.045,
                             'absorptivity': 0,
                         },
-                        [ ]
+                        [ ],
+                    ),
+                ]
              ),
              (
                 'MS-Z--outer',
@@ -390,8 +393,6 @@ model_description.append(
                     'emissivity': 0.045,
                     'absorptivity': 0,
                 },
-                [ ]
-             ),
                 [
                     (
                         'SSII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
@@ -974,25 +975,28 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
+                [ ],
             ),
         ]
     ),
-    
+)
+
+model_description.append(
     (
-        'MAG-Xcoil'
+        'MAG-Xcoil',
         {
             'mass': 0.01,
             'heatCapacity': 389,
             'heatGeneration': 0,
             'temperature': 22,
-        }
+        },
         [
             (
                 'MAG-Xcoil-outer',
                 {
                     'emissivity': 0.03,
                     'absorptivity': 0,
-                }
+                },
                 [ ]
             ),
             (
@@ -1003,7 +1007,7 @@ model_description.append(
                 },
                 [
                     (
-                        'ZXMAG-PCB-MAG-Xcoil-outer', ('MAG-Xcoil', 'MAG-Xcoil-outer')
+                        'ZXMAG-PCB-MAG-Xcoil-outer', ('MAG-Xcoil', 'MAG-Xcoil-outer'),
                         [
                             links.RadiationLink,
                         ],
@@ -1027,14 +1031,14 @@ model_description.append(
             'heatCapacity': 389,
             'heatGeneration': 0,
             'temperature': 22,
-        }
+        },
         [
             (
                 'MAG-Zcoil-inner',
                 {
                     'emissivity': 0.03,
                     'absorptivity': 0,
-                }
+                },
                 [ ]
             ),
             (
@@ -1042,16 +1046,18 @@ model_description.append(
                 {
                     'emissivity': 0.03,
                     'absorptivity': 0,
-                }
+                },
                 [ ]
             ),
         ]
     ),
-    
+)
+
+model_description.append(
     (
         'MAG-Zarm',
         {
-            'mass': 0.01
+            'mass': 0.01,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -1111,7 +1117,7 @@ model_description.append(
                         'ZXMAG-PCB-MAG-Zarm-outer', ('MAG-Zarm', 'MAG-Zarm-outer'),
                         [
                             links.ConductionLink,
-                        ]
+                        ],
                         {
                             'conductionArea': 0.00014,
                             'conductivity': 237,
