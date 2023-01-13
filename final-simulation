@@ -728,26 +728,26 @@ model_description.append(
                     'absorptivity': 0,
                 },
                 [
-                    (
-                        'MS-Z+-SSV-side', ('SSV', 'SSV-side'),
-                        [
-                            links.ContactLink,
-                        ],
-                        {
-                            'contactArea': 0.00044,
-                            'resistance': 0.05,
-                        }
-                    ),
-                    (
-                        'MS-Z--SSV-side', ('SSV', 'SSV-side'),
-                        [
-                            links.ContactLink,
-                        ],
-                        {
-                            'contactArea': 0.00044,       # used by contact calculations
-                            'resistance': 0.05,           # used by contact calculations
-                        }
-                    ),
+                    # (
+                    #     'MS-Z+-SSV-side', ('SSV', 'SSV-side'),  # TODO: recursive link to self
+                    #     [
+                    #         links.ContactLink,
+                    #     ],
+                    #     {
+                    #         'contactArea': 0.00044,
+                    #         'resistance': 0.05,
+                    #     }
+                    # ),
+                    # (
+                    #     'MS-Z--SSV-side', ('SSV', 'SSV-side'),  # TODO: recursive link to self
+                    #     [
+                    #         links.ContactLink,
+                    #     ],
+                    #     {
+                    #         'contactArea': 0.00044,       # used by contact calculations
+                    #         'resistance': 0.05,           # used by contact calculations
+                    #     }
+                    # ),
                 ]
             ),
         ]
