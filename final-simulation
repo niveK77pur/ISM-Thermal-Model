@@ -898,49 +898,49 @@ model_description.append(
                     'absorptivity': 0,
                 },
                 [
-                    (
-                        'RW-RW-PCB-top', ('RW-PCB', 'RW-PCB-top'),
-                        [
-                            links.ContactLink,
-                        ],
-                        {
-                            'contactArea': 0.0016,
-                            'resistance': 0.05,
-                        }
-                    ),
-                    (
-                        'Panel-X+-RW-curved', ('RW', 'RW-curved'),
-                        [
-                            links.RadiationLink,
-                        ],
-                        {
-                            'radiationArea1': 0.002,
-                            'radiationArea2': 0.026,
-                            'viewingFactor': 0.05,
-                        }
-                    ),
-                    (
-                        'Panel-Z--RW-curved', ('RW', 'RW-curved'),
-                        [
-                            links.RadiationLink,
-                        ],
-                        {
-                            'radiationArea1': 0.002,
-                            'radiationArea2': 0.026,
-                            'viewingFactor': 0.05
-                        }
-                    ),
-                    (
-                        'Panel-X--RW-curved', ('RW', 'RW-curved'),
-                        [
-                            links.RadiationLink,
-                        ],
-                        {
-                            'radiationArea1': 8.51,
-                            'radiationArea2': 3.8,
-                            'viewingFactor': 0.05,
-                        }
-                    ),
+                    # (
+                    #     'RW-RW-PCB-top', ('RW-PCB', 'RW-PCB-top'),
+                    #     [
+                    #         links.ContactLink,
+                    #     ],
+                    #     {
+                    #         'contactArea': 0.0016,
+                    #         'resistance': 0.05,
+                    #     }
+                    # ),
+                    # (
+                    #     'Panel-X+-RW-curved2', ('RW', 'RW-curved'),  # TODO: fix non-unique link name
+                    #     [
+                    #         links.RadiationLink,
+                    #     ],
+                    #     {
+                    #         'radiationArea1': 0.002,
+                    #         'radiationArea2': 0.026,
+                    #         'viewingFactor': 0.05,
+                    #     }
+                    # ),
+                    # (
+                    #     'Panel-Z--RW-curved', ('RW', 'RW-curved'),
+                    #     [
+                    #         links.RadiationLink,
+                    #     ],
+                    #     {
+                    #         'radiationArea1': 0.002,
+                    #         'radiationArea2': 0.026,
+                    #         'viewingFactor': 0.05
+                    #     }
+                    # ),
+                    # (
+                    #     'Panel-X--RW-curved', ('RW', 'RW-curved'),
+                    #     [
+                    #         links.RadiationLink,
+                    #     ],
+                    #     {
+                    #         'radiationArea1': 8.51,
+                    #         'radiationArea2': 3.8,
+                    #         'viewingFactor': 0.05,
+                    #     }
+                    # ),
                 ]
             ),
         ]
