@@ -373,8 +373,8 @@ model_description.append(
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
-            },
-            [
+        },
+        [
             (
                 'MS-Z--inner',
                 {
@@ -403,7 +403,7 @@ model_description.append(
                 ]
             ),
         ]
-        ),
+    ),
 )
 
 model_description.append(
@@ -489,9 +489,9 @@ model_description.append(
                             links.RadiationLink,
                         ],
                         {
-                             'radiationArea1': 0.008,    # used by radiation calculations
-                             'radiationArea2': 0.004,    # used by radiation calculations
-                             'viewingFactor': 0.15,
+                            'radiationArea1': 0.008,    # used by radiation calculations
+                            'radiationArea2': 0.004,    # used by radiation calculations
+                            'viewingFactor': 0.15,
                         }
                     ),
                     (
@@ -553,9 +553,9 @@ model_description.append(
                             links.RadiationLink,
                         ],
                         {
-                             'radiationArea1': 0.008,    # used by radiation calculations
-                             'radiationArea2': 0.004,    # used by radiation calculations
-                             'viewingFactor': 0.15,
+                            'radiationArea1': 0.008,    # used by radiation calculations
+                            'radiationArea2': 0.004,    # used by radiation calculations
+                            'viewingFactor': 0.15,
                         }
                     ),
                     (
@@ -616,9 +616,9 @@ model_description.append(
                             links.RadiationLink,
                         ],
                         {
-                             'radiationArea1': 0.008,
-                             'radiationArea2': 0.004,
-                             'viewingFactor': 0.15,
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.004,
+                            'viewingFactor': 0.15,
                         }
                     ),
                     (
@@ -1169,18 +1169,16 @@ model_description.append(
         ]
     ),
 )
-                     
-                
-        
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-thermalmodel=tm.ThermalModel(
-    simulation_duration= 0.1666 * 60,  # seconds
-    timestep= 1,  # seconds
-    model_description= model_description,
+thermalmodel = tm.ThermalModel(
+    simulation_duration=0.1666 * 60,  # seconds
+    timestep=1,  # seconds
+    model_description=model_description,
 )
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
