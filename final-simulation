@@ -738,15 +738,36 @@ model_description.append(
             (
                 'SSIV-side',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
-                [ ]
+                [
+                    (
+                        'MS-Z-inner-SSIV-side', ('SSIV', 'SSIV-side'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,
+                            'resistance': 0.05,
+                        }
+                    ),
+                    (
+                        'MS-Z+-inner-SSIV-side', ('SSIV', 'SSIV-side'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,
+                            'resistance': 0.05,
+                        }
+                    ),
+                ]
             ),
             (
                 'SSIV-top',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [
@@ -789,7 +810,7 @@ model_description.append(
             (
                 'SSV-side',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [
@@ -832,7 +853,7 @@ model_description.append(
             (
                 'SSVI-side',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [
