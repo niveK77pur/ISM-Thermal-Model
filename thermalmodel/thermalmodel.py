@@ -202,3 +202,18 @@ class ThermalModel():
             [ self.temperatureReadings, pd.DataFrame(reading) ],
             ignore_index=True,
         )
+
+    def display(self):
+        indentspaces = {
+            'HSN': 0,
+            'IFN': 4,
+            'link': 8,
+        }
+        indent = { k: ' ' * v + '- ' for k, v in indentspaces.items() }
+
+        for hsnName, hsn in self.heatStorageNodes.items():
+            print('{}{}'.format(indent['HSN'], hsnName))
+            for ifnName, ifn in hsn.interfaces.items():
+                print('{}{}'.format(indent['IFN'], ifnName))
+                for linkName, link in ifn.interfaceLinks.items():
+                    print('{}{}'.format(indent['link'], linkName))

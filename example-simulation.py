@@ -181,9 +181,11 @@ thermalmodel = tm.ThermalModel(
     model_description=model_description,
 )
 
+thermalmodel.display()
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                                 Run Simulation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-thermalmodel.simulate()
-thermalmodel.save()
+# thermalmodel.simulate()
+# thermalmodel.save()
