@@ -423,7 +423,19 @@ model_description.append(
                     'emissivity': 0.045,
                     'absorptivity': 0,
                 },
-                [ ],
+                [
+                    (
+                        '3C2-top-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+                            'conductionArea': 0.000013,
+                            'conductivity': 398,
+                            'length': 0.108,
+                        }
+                    )
+                ],
             ),
             (
                 'MS-Z--outer',
