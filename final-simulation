@@ -1004,7 +1004,19 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ],
+                [
+                    (
+                        'ZXMAG-PCB-bottom-RW-PCB-top', ('RW-PCB', 'RW-PCB-top'),
+                        [
+                            links.ConductionLink
+                        ],
+                        {
+                            'conductionArea': 0.000103,
+                            'conductivity': 237,
+                            'length': 0.02
+                        }
+                    ),
+                ]
             ),
         ]
     ),
