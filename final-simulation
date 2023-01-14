@@ -128,7 +128,18 @@ model_description.append(
                             'conductivity': 398,
                             'length': 0.108,
                         }
-                    )
+                    ),
+                    (
+                        'MS-Z-inner-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+                            'conductionArea': 0.00036,
+                            'conductivity': 237,
+                            'length': 0.096,
+                        }
+                    ),
                 ]
             ),
             (
