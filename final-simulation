@@ -7,7 +7,6 @@ import thermalmodel.links as links
 #                                    Functions
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 def C2K(temperature):
     return temperature + 273.15
 
@@ -20,7 +19,7 @@ model_description = [
 
     (  # HSN
         'Antenna-Plate',  # HSN name
-        {  # HSN parameters
+        {
             'mass': 0.02,
             'heatCapacity': 887,
             'heatGeneration': 0,
@@ -33,7 +32,18 @@ model_description = [
                     'emissivity': 0.045,
                     'absorptivity': 0,
                 },
-                [ ]
+                [
+                    (
+                        'SSI-top-Antenna-Plate-bottom', ('Antenna-Plate', 'Antenna-Plate-bottom'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.003,
+                            'resistance': 0.05,
+                        }
+                    ),
+                ]
             ),
         ]
     ),
@@ -53,18 +63,7 @@ model_description = [
                     'emissivity': 0.045,
                     'absorptivity': 0,
                 },
-                [
-                    (
-                        'SSI-Antenna-Plate-bottom', ('Antenna-Plate', 'Antenna-Plate-bottom'),
-                        [
-                            links.ContactLink,
-                        ],
-                        {
-                            'contactArea': 0.003,
-                            'resistance': 0.05,
-                        }
-                    ),
-                ]
+                [ ],
             ),
             (
                 'SSI-side',  # IFN name
@@ -232,7 +231,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MAG-Ycoil-BAT-curved', ('Batteries', 'BAT-curved'),
+                        'MAG-Ycoil-innercirc-BAT-curved', ('Batteries', 'BAT-curved'),
                         [
                             links.RadiationLink,
                         ],
@@ -378,7 +377,18 @@ model_description.append(
                             'conductivity': 237,
                             'length': 0.011,
                         }
-                    )
+                    ),
+                    (
+                        'Panel-X--inner-3C2-top', ('3C2', '3C2-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.17,
+                        }
+                    ),
                 ]
             ),
             (
@@ -485,8 +495,18 @@ model_description.append(
                             'conductivity': 398,
                             'length': 0.108,
                         }
-                    )
-                ],
+                    ),
+                    (
+                        'SSII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,  # used by contact calculations
+                            'resistance': 0.05,  # used by contact calculations
+                        }
+                    ),
+                ]
             ),
             (
                 'MS-Z--outer',
@@ -496,13 +516,13 @@ model_description.append(
                 },
                 [
                     (
-                        'SSII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        'Panel-X--inner-MS-Z-outer', ('MS-Z-', 'MS-Z--outer'),
                         [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.00044,       # used by contact calculations
-                            'resistance': 0.05,           # used by contact calculations
+                            'contactArea': 0.0004,
+                            'resistance': 0.05,
                         }
                     ),
                 ]
@@ -654,28 +674,9 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
-            (
-                'Panel-X+-outer',
-                {
-                    'emissivity': 0.03,
-                    'absorptivity': 0,
-                },
                 [
                     (
-                        'Panel-X+-BAT-curved', ('Batteries', 'BAT-curved'),
-                        [
-                            links.RadiationLink,
-                        ],
-                        {
-                            'radiationArea1': 0.008,    # used by radiation calculations
-                            'radiationArea2': 0.004,    # used by radiation calculations
-                            'viewingFactor': 0.15,
-                        }
-                    ),
-                    (
-                        'Panel-X+-EPS-top', ('EPS', 'EPS-top'),
+                        'Panel-X+-inner-BAT-curved', ('Batteries', 'BAT-curved'),
                         [
                             links.RadiationLink,
                         ],
@@ -686,7 +687,18 @@ model_description.append(
                         }
                     ),
                     (
-                        'Panel-X+-MS-Z--outer', ('MS-Z-', 'MS-Z--outer'),
+                        'Panel-X+-inner-EPS-top', ('EPS', 'EPS-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.004,
+                            'viewingFactor': 0.15,
+                        }
+                    ),
+                    (
+                        'Panel-X+-inner-MS-Z--outer', ('MS-Z-', 'MS-Z--outer'),
                         [
                             links.ContactLink,
                         ],
@@ -695,10 +707,86 @@ model_description.append(
                             'resistance': 0.05,
                         }
                     ),
+                    (
+                        'MS-Z+-outer-Panel-X+-inner', ('Panel-X+', 'Panel-X+-inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.0004,
+                            'resistance': 0.05,
+                        }
+                    ),
+                    (
+                        'Panel-X+-inner-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.36,
+                        }
+                    ),
                 ]
             ),
         ]
-    )
+    ),
+)
+
+model_description.append(
+    (
+        'Panel-X-',
+        {
+            'mass': 0.08,
+            'heatCapacity': 887,
+            'heatGeneration': 0,
+            'temperature': C2K(22),
+        },
+        [
+            (
+                'Panel-X--inner',
+                {
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'Panel-X--inner-BAT-curved', ('Batteries', 'BAT-curved'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.004,
+                            'viewingFactor': 0.15,
+                        }
+                    ),
+                    (
+                        'Panel-X--inner-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.36,
+                        }
+                    ),
+                    (
+                        'MS-Z+-outer-Panel-X--inner', ('Panel-X-', 'Panel-X--inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.004,
+                            'resistance': 0.05,
+                        }
+                    ),
+                ]
+            ),
+        ]
+    ),
 )
 
 model_description.append(
@@ -714,7 +802,7 @@ model_description.append(
             (
                 'Panel-Z+-inner',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [ ]
@@ -773,7 +861,7 @@ model_description.append(
                 ]
             ),
         ]
-    )
+    ),
 )
 
 model_description.append(
@@ -993,7 +1081,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'Panel-X-inner-RW-curved', ('RW', 'RW-curved'),
+                        'Panel-X--inner-RW-curved', ('RW', 'RW-curved'),
                         [
                             links.RadiationLink,
                         ],
@@ -1146,15 +1234,26 @@ model_description.append(
                 [
                     (
                         'Panel-X+-inner-MAG-Xcoil-outer', ('MAG-Xcoil', 'MAG-Xcoil-outer'),
-                        {
+                        [
                             links.RadiationLink,
-                        },
+                        ],
                         {
                             'radiationArea1': 0.005,
                             'radiationArea2': 0.026,
                             'viewingFactor': 0.36,
                         }
                     ),
+                    (
+                        'Panel-X--inner-MAG-Xcoil-outer', ('MAG-Xcoil', 'MAG-Xcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.36,
+                        }
+                    )
                 ]
             ),
             (
@@ -1342,6 +1441,8 @@ thermalmodel = tm.ThermalModel(
     timestep=1,  # seconds
     model_description=model_description,
 )
+
+thermalmodel.display()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                                 Run Simulation
