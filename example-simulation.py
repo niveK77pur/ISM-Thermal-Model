@@ -134,10 +134,42 @@ model_description.append((
                         'resistance': 4.2,
                     },
                 ),
+                (
+                    'Antenna-joint-ADC-top', ('ADC', 'ADC-top'),
+                    [
+                        links.ContactLink,
+                    ],
+                    {
+                        'contactArea': 5.2,
+                        'resistance': 4.2,
+                    },
+                ),
             ],
         ),
     ]
 ))
+
+# example illustrating that inverse links are being generated automatically
+model_description.append((
+    'ADC',
+    {
+        'mass': 3,
+        'heatCapacity': 9,
+        'heatGeneration': 0,
+        'temperature': 22.7,
+    },
+    [
+        (
+            'ADC-top',
+            {
+                'emissivity': 4,
+                'absorptivity': 7,
+            },
+            [ ],  # no explicit link defined, but temp changeAntenna to link from Antenna
+        ),
+    ]
+))
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
