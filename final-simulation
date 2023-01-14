@@ -235,8 +235,28 @@ model_description.append(
                     ),
                 ]
             ),
+            (
+                'MAG-Ycoil-bottom',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [
+                    (
+                        'MAG-Ycoil-bottom-EPS-top', ('EPS', 'EPS-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.002,
+                            'viewingFactor': 0.64,
+                        }
+                    ),
+                ]
+            ),
         ]
-    )
+    ),
 )
 
 model_description.append(
