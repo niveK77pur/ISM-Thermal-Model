@@ -370,7 +370,19 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
+                [
+                    (
+                        '3C2-bottom-SSII-top', ('SSII', 'SSII-top'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+                            'conductionArea': 0.0001,
+                            'conductivity': 237,
+                            'length':  0.03,
+                        }
+                    )
+                ]
             ),
             (
                 'SSII-side',
