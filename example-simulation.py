@@ -187,5 +187,5 @@ thermalmodel.display()
 #                                 Run Simulation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# thermalmodel.simulate()
-# thermalmodel.save()
+thermalmodel.simulate()
+thermalmodel.save()
