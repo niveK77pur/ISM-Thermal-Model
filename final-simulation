@@ -896,7 +896,7 @@ model_description.append(
             (
                 'RW-curved',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [ ]
@@ -904,7 +904,7 @@ model_description.append(
             (
                 'RW-bottom',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [
@@ -1026,6 +1026,17 @@ model_description.append(
                             'conductionArea': 0.0001,
                             'conductivity': 237,
                             'length': 0.04,
+                        }
+                    ),
+                    (
+                        'ZXMAG-PCB-top-MAG-Zarm-outer', ('MAG-Zarm', 'MAG-Zarm-outer'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+                            'conductionArea': 0.00014,
+                            'conductivity': 237,
+                            'length': 0.008,
                         }
                     ),
                 ]
