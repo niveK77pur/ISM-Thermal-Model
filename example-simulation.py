@@ -107,6 +107,38 @@ model_description = [
 
 ]
 
+# alternatively, append tuples to the list instead
+model_description.append((
+    'Antenna',
+    {
+        'mass': 5,
+        'heatCapacity': 8,
+        'heatGeneration': 0,
+        'temperature': 21.2,
+    },
+    [
+        (
+            'Antenna-joint',
+            {
+                'emissivity': 0.1,
+                'absorptivity': 2,
+            },
+            [
+                (
+                    'Antenna-joint-BAT-front', ('Battery', 'BAT-front'),
+                    [
+                        links.ContactLink,
+                    ],
+                    {
+                        'contactArea': 5.2,
+                        'resistance': 4.2,
+                    },
+                ),
+            ],
+        ),
+    ]
+))
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                      Create ThermalModel simulation class
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
