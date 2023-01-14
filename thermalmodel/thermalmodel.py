@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 import itertools
 
-from .nodes import HeatStorageNode, LinkType
-from .links import ManualLink
+from .nodes import HeatStorageNode, InterfaceNode, LinkType, Node
+from .links import Link, ManualLink
 
 
 class ThermalModel():
@@ -202,3 +202,40 @@ class ThermalModel():
             [ self.temperatureReadings, pd.DataFrame(reading) ],
             ignore_index=True,
         )
+
+    def display(self):
+        indentspaces = {
+            'HSN': 0,
+            'IFN': 4,
+            'link': 8,
+        }
+        indent = { k: ' ' * v + '- ' for k, v in indentspaces.items() }
+        paramsindent = { k: ' ' * v + '  ' for k, v in indentspaces.items() }
+
+        def printParams(parameters: Dict, level: str):
+            if level == 'link':
+                for k, v in parameters.items():
+                    if k == 'node1' or k == 'node2':
+                        ifn: InterfaceNode = v
+                        hsn: HeatStorageNode = ifn.referenceNode
+                        hsn_ifn_element: Tuple[str, InterfaceNode] = tuple(filter(
+                            lambda i: i[1] is v,
+                            hsn.interfaces.items()
+                        ))[0]
+                        v = '{} {}'.format(hsn_ifn_element[0], hsn_ifn_element[1])
+                    print('{}{}: {}'.format(paramsindent[level], k, v))
+                return
+            for k, v in parameters.items():
+                print('{}{}: {}'.format(paramsindent[level], k, v))
+
+        for hsnName, hsn in self.heatStorageNodes.items():
+            print('{}{}'.format(indent['HSN'], hsnName))
+            printParams(hsn.parameters, 'HSN')
+
+            for ifnName, ifn in hsn.interfaces.items():
+                print('{}{}'.format(indent['IFN'], ifnName))
+                printParams(ifn.parameters, 'IFN')
+
+                for linkName, link in ifn.interfaceLinks.items():
+                    print('{}{}'.format(indent['link'], linkName))
+                    printParams(link.parameters, 'link')

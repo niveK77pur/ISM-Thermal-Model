@@ -10,8 +10,9 @@ from .links import Link, LinkType
 
 class Node():
 
-    def __init__(self):
+    def __init__(self, parameters: Dict):
         self._temperature: float = 0
+        self.parameters: Dict = {}
 
     def computeHeatExchange(self):
         return NotImplementedError()
@@ -23,7 +24,8 @@ class Node():
 class HeatStorageNode(Node):
 
     def __init__(self, parameters: dict):
-        super().__init__()
+        super().__init__(parameters)
+        self.parameters: Dict = parameters
 
         self._timestep: float = parameters.get('timestep', 1)
 
@@ -67,7 +69,7 @@ class HeatStorageNode(Node):
 class InterfaceNode(Node):
 
     def __init__(self, referenceNode: HeatStorageNode, parameters: dict):
-        super().__init__()
+        super().__init__(parameters)
 
         self.referenceNode: HeatStorageNode = referenceNode
 

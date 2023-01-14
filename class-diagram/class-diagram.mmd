@@ -12,6 +12,7 @@ class ThermalModel {
     -addInterfaceLinks(nameHSN, nameIFN, List~(name, target, linkeTypes, parameters)~ links)
     +simulate()
     +save(filename?)
+    +display()
     -createMatrices()
     -addTemperatureReading()
     +ThermalModel(simulation_duration, timestep, model_description)
@@ -19,8 +20,10 @@ class ThermalModel {
 
 class Node {
     -Float temperature
+    +Dict parameters
     +computeHeatExchange()
     +getTemperature() Float
+    +Node(parameters)
 }
 
 class HeatStorageNode {
