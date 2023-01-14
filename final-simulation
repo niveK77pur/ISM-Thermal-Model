@@ -984,7 +984,19 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
+                [
+                    (
+                        'SSIII-bottom-ZXMAG-PCB-top', ('ZXMAG-PCB', 'ZXMAG-PCB-top'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+                            'conductionArea': 0.0001,
+                            'conductivity': 237,
+                            'length': 0.04,
+                        }
+                    ),
+                ]
             ),
             (
                 'ZXMAG-PCB-bottom',
