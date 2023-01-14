@@ -972,7 +972,7 @@ model_description.append(
     (
         'ZXMAG-PCB',
         {
-            'mass': 0.005,
+            'mass': 0.15,
             'heatCapacity': 389,
             'heatGeneration': 0,
             'temperature': 22,
