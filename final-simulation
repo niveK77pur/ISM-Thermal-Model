@@ -772,7 +772,7 @@ model_description.append(
                 },
                 [
                     (
-                        'SSIV-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        'SSIV-top-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
                             links.ContactLink,
                         ],
@@ -992,6 +992,17 @@ model_description.append(
                         {
                             'contactArea': 0.0016,
                             'resistance': 0.05,
+                        }
+                    ),
+                    (
+                        'RW-PCB-bottom-SSIV-top', ('SSIV', 'SSIV-top'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+                            'conductionArea': 0.0001036,
+                            'conductivity': 237,
+                            'length': 0.023,
                         }
                     ),
                 ]
