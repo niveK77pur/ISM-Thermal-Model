@@ -1134,7 +1134,19 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
+                [
+                    (
+                        'Panel-X+-inner-MAG-Xcoil-outer', ('MAG-Xcoil', 'MAG-Xcoil-outer'),
+                        {
+                            links.RadiationLink,
+                        },
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.36,
+                        }
+                    ),
+                ]
             ),
             (
                 'MAG-Xcoil-inner',
