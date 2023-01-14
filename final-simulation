@@ -192,7 +192,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MAG-Ycoil-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        'MAG-Ycoil-outercirc-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
                             links.RadiationLink,
                         ],
@@ -200,6 +200,17 @@ model_description.append(
                             'radiationArea1': 0.000892,  # used by radiation calculations
                             'radiationArea2': 2.4,   # used by radiation calculations
                             'viewingFactor': 2.4,    # used by radiation calculations
+                        }
+                    ),
+                    (
+                        'MAG-Ycoil-outercirc-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.0042,
+                            'radiationArea2': 0.0035,
+                            'viewingFactor': 0.45,
                         }
                     ),
                 ]
@@ -217,9 +228,9 @@ model_description.append(
                             links.RadiationLink,
                         ],
                         {
-                            'radiationArea1': 0.0042,    # used by radiation calculations
-                            'radiationArea2': 0.0035,    # used by radiation calculations
-                            'viewingFactor': 0.45,       # used by radiation calculations
+                            'radiationArea1': 0.0042,
+                            'radiationArea2': 0.0035,
+                            'viewingFactor': 0.45,
                         }
                     ),
                 ]
@@ -1172,7 +1183,7 @@ model_description.append(
             (
                 'MAG-Zarm-outer',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [
@@ -1249,7 +1260,7 @@ model_description.append(
             (
                 'MAG-Xarm-outer',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [
