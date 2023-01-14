@@ -318,7 +318,7 @@ model_description.append(
                 },
                 [
                     (
-                        '3C2-EPS-bottom', ('EPS', 'EPS-bottom'),
+                        '3C2-top-EPS-bottom', ('EPS', 'EPS-bottom'),
                         [
                             links.ConductionLink,
                         ],
@@ -338,7 +338,7 @@ model_description.append(
                 },
                 [
                     (
-                        '3C2-EPS-bottom', ('EPS', 'EPS-bottom'),
+                        '3C2-bottom-EPS-bottom2', ('EPS', 'EPS-bottom'),
                         [
                             links.RadiationLink,
                         ],
