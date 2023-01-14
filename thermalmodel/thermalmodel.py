@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import itertools
 
-from .nodes import HeatStorageNode, LinkType
+from .nodes import HeatStorageNode, LinkType, Node
 from .links import ManualLink
 
 
@@ -210,10 +210,20 @@ class ThermalModel():
             'link': 8,
         }
         indent = { k: ' ' * v + '- ' for k, v in indentspaces.items() }
+        paramsindent = { k: ' ' * v + '  ' for k, v in indentspaces.items() }
+
+        def printParams(parameters: Dict[str, Node], level: str):
+            for k, v in parameters.items():
+                print('{}{}: {}'.format(paramsindent[level], k, v))
 
         for hsnName, hsn in self.heatStorageNodes.items():
             print('{}{}'.format(indent['HSN'], hsnName))
+            printParams(hsn.parameters, 'HSN')
+
             for ifnName, ifn in hsn.interfaces.items():
                 print('{}{}'.format(indent['IFN'], ifnName))
+                printParams(ifn.parameters, 'IFN')
+
                 for linkName, link in ifn.interfaceLinks.items():
                     print('{}{}'.format(indent['link'], linkName))
+                    printParams(link.parameters, 'link')

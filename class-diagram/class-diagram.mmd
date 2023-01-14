@@ -20,8 +20,10 @@ class ThermalModel {
 
 class Node {
     -Float temperature
+    +Dict parameters
     +computeHeatExchange()
     +getTemperature() Float
+    +Node(parameters)
 }
 
 class HeatStorageNode {
