@@ -4,6 +4,15 @@ import thermalmodel.thermalmodel as tm
 import thermalmodel.links as links
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#                                    Functions
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+def C2K(temperature):
+    return temperature + 273.15
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                                Model description
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -15,7 +24,7 @@ model_description = [
             'mass': 0.02,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [  # list of attached IFN
             (
@@ -35,7 +44,7 @@ model_description = [
             'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -108,7 +117,7 @@ model_description.append(
             'mass': 0.07,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -173,7 +182,7 @@ model_description.append(
             'mass': 0.14,
             'heatCapacity': 387,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [  # list of attached IFN
             (
@@ -266,7 +275,7 @@ model_description.append(
             'mass': 0.096,
             'heatCapacity': 1040,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [  # list of attached IFN
             (
@@ -296,7 +305,7 @@ model_description.append(
             'mass': 0.013,
             'heatCapacity': 387,
             'heatGeneration': 0.2,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -349,7 +358,7 @@ model_description.append(
             'mass': 0.18,
             'heatCapacity': 387,
             'heatGeneration': 1.33,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -403,7 +412,7 @@ model_description.append(
             'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -456,7 +465,7 @@ model_description.append(
             'mass': 0.07,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -509,7 +518,7 @@ model_description.append(
             'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -572,7 +581,7 @@ model_description.append(
             'mass': 0.08,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -636,7 +645,7 @@ model_description.append(
             'mass': 0.08,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -699,7 +708,7 @@ model_description.append(
             'mass': 0.08,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -774,7 +783,7 @@ model_description.append(
             'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -846,7 +855,7 @@ model_description.append(
             'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -889,7 +898,7 @@ model_description.append(
             'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -932,7 +941,7 @@ model_description.append(
             'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -1008,7 +1017,7 @@ model_description.append(
             'mass': 0.15,
             'heatCapacity': 389,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -1060,7 +1069,7 @@ model_description.append(
             'mass': 0.15,
             'heatCapacity': 389,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -1125,7 +1134,7 @@ model_description.append(
             'mass': 0.01,
             'heatCapacity': 389,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -1179,7 +1188,7 @@ model_description.append(
             'mass': 0.01,
             'heatCapacity': 389,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -1209,7 +1218,7 @@ model_description.append(
             'mass': 0.01,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
@@ -1286,7 +1295,7 @@ model_description.append(
             'mass': 0.01,
             'heatCapacity': 887,
             'heatGeneration': 0,
-            'temperature': 22,
+            'temperature': C2K(22),
         },
         [
             (
