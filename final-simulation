@@ -304,7 +304,7 @@ model_description.append(
     (
         '3C2',
         {
-            'mass': 0.02,
+            'mass': 0.18,
             'heatCapacity': 387,
             'heatGeneration': 1.33,
             'temperature': 22,
