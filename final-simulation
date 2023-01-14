@@ -367,7 +367,7 @@ model_description.append(
             (
                 'SSII-top',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [
@@ -387,7 +387,7 @@ model_description.append(
             (
                 'SSII-side',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [
@@ -473,15 +473,26 @@ model_description.append(
             (
                 'SSIII-side',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
-                [ ]
+                [
+                    (
+                        'SSIII-side-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.00044,
+                            'resistance': 0.05,
+                        }
+                    ),
+                ]
             ),
             (
                 'SSIII-bottom',
                 {
-                    'emissivity': 0.03,
+                    'emissivity': 0.045,
                     'absorptivity': 0,
                 },
                 [
@@ -855,7 +866,7 @@ model_description.append(
     (
         'RW',
         {
-            'mass': 0.01,
+            'mass': 0.03,
             'heatCapacity': 887,
             'heatGeneration': 0,
             'temperature': 22,
@@ -931,8 +942,8 @@ model_description.append(
     (
         'RW-PCB',
         {
-            'mass': 0.01,
-            'heatCapacity': 887,
+            'mass': 0.15,
+            'heatCapacity': 389,
             'heatGeneration': 0,
             'temperature': 22,
         },
