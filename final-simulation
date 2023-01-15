@@ -538,7 +538,7 @@ model_description.append(
                 },
                 [
                     (
-                        'Panel-X--inner-MS-Z-outer', ('MS-Z-', 'MS-Z--outer'),
+                        'Panel-X--inner-MS-Z--outer', ('MS-Z-', 'MS-Z--outer'),
                         [
                             links.ContactLink,
                         ],
