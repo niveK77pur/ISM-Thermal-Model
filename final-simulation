@@ -1282,6 +1282,17 @@ model_description.append(
                             'viewingFactor': 0.36,
                         }
                     ),
+                    (
+                        'Panel-Z--inner-MAG-Xcoil-outer', ('MAG-Xcoil', 'MAG-Xcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.36,
+                        }
+                    ),
                 ]
             ),
             (
