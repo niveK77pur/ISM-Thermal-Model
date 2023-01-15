@@ -827,14 +827,6 @@ model_description.append(
                     'emissivity': 0.045,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
-            (
-                'Panel-Z+-outer',
-                {
-                    'emissivity': 0.03,
-                    'absorptivity': 0,
-                },
                 [
                     (
                         'Panel-Z+-BAT-curved', ('Batteries', 'BAT-curved'),
@@ -870,7 +862,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'Panel-Z+-3C2-top', ('3C2', '3C2-top'),
+                        'Panel-Z+inner-3C2-top', ('3C2', '3C2-top'),
                         [
                             links.RadiationLink,
                         ],
@@ -1275,7 +1267,18 @@ model_description.append(
                             'radiationArea2': 0.026,
                             'viewingFactor': 0.36,
                         }
-                    )
+                    ),
+                    (
+                        'Panel-Z+-MAG-Xcoil-outer', ('MAG-Xcoil', 'MAG-Xcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.36,
+                        }
+                    ),
                 ]
             ),
             (
