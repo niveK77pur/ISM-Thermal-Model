@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 import itertools
 
+import plotly.express as px
+
 from .nodes import HeatStorageNode, InterfaceNode, LinkType, Node
 from .links import Link, ManualLink
 
@@ -197,6 +199,20 @@ class ThermalModel():
         print(f'Saving data to file {filename}')
         self.temperatureReadings.to_csv(filename, index=False)
 
+    def plotfig(self):
+        """Make a plot of the temperatures evolving"""
+        # rearrange dataframe for plotly
+        df = pd.DataFrame(columns=['time', 'temperature', 'HSN'])
+        for col in self.temperatureReadings.columns[1:]:
+            # ignoring first column 'time'
+            df = pd.concat([ df, pd.DataFrame({
+                'time': self.temperatureReadings['time'].tolist(),
+                'temperature': self.temperatureReadings[col].tolist(),
+                'HSN': col,
+            }) ])
+        fig = px.line(df, x='time', y='temperature', color='HSN')
+        fig.show()
+
     def _addTemperatureReading(self, reading: Dict[str, List[float]]):
         self.temperatureReadings = pd.concat(
             [ self.temperatureReadings, pd.DataFrame(reading) ],
@@ -204,6 +220,7 @@ class ThermalModel():
         )
 
     def display(self):
+        """Print the internal representation of the thermal model. Mainly needed for debugging purposes."""
         indentspaces = {
             'HSN': 0,
             'IFN': 4,

@@ -188,4 +188,5 @@ thermalmodel.display()
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 thermalmodel.simulate()
+thermalmodel.plotfig()
 thermalmodel.save()
