@@ -1066,17 +1066,9 @@ model_description.append(
                     'emissivity': 0.045,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
-            (
-                'RW-bottom',
-                {
-                    'emissivity': 0.045,
-                    'absorptivity': 0,
-                },
                 [
                     (
-                        'Panel-Z+-RW-curved', ('RW', 'RW-curved'),
+                        'Panel-Z+-inner-RW-curved', ('RW', 'RW-curved'),
                         [
                             links.RadiationLink,
                         ],
@@ -1086,6 +1078,15 @@ model_description.append(
                             'viewingFactor': 0.15,
                         }
                     ),
+                ]
+            ),
+            (
+                'RW-bottom',
+                {
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
+                [
                     (
                         'Panel-X+-inner-RW-curved', ('RW', 'RW-curved'),
                         [
@@ -1098,7 +1099,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'Panel-Z-inner-RW-curved', ('RW', 'RW-curved'),
+                        'Panel-Z--inner-RW-curved', ('RW', 'RW-curved'),
                         [
                             links.RadiationLink,
                         ],
@@ -1142,14 +1143,6 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
-            (
-                'RW-PCB-bottom',
-                {
-                    'emissivity': 0.03,
-                    'absorptivity': 0,
-                },
                 [
                     (
                         'RW-bottom-RW-PCB-top', ('RW-PCB', 'RW-PCB-top'),
@@ -1161,6 +1154,15 @@ model_description.append(
                             'resistance': 0.05,
                         }
                     ),
+                ]
+            ),
+            (
+                'RW-PCB-bottom',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
+                [
                     (
                         'RW-PCB-bottom-SSIV-top', ('SSIV', 'SSIV-top'),
                         [
@@ -1354,7 +1356,19 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
+                [
+                    (
+                        'ZXMAG-PCB-top-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.006,
+                            'viewingFactor': 0.011,
+                        }
+                    ),
+                ]
             ),
         ]
     ),
@@ -1378,7 +1392,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MAG-Zcoil-MAG-Zarm-outer', ('MAG-Zarm', 'MAG-Zarm-outer'),
+                        'MAG-Zcoil-inner-MAG-Zarm-outer', ('MAG-Zarm', 'MAG-Zarm-outer'),
                         [
                             links.ContactLink,
                         ],
@@ -1388,7 +1402,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'Panel-Z--MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
+                        'Panel-Z--inner-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
                         [
                             links.RadiationLink,
                         ],
@@ -1396,17 +1410,6 @@ model_description.append(
                             'radiationArea1': 0.005,
                             'radiationArea2': 0.026,
                             'viewingFactor': 0.36,
-                        }
-                    ),
-                    (
-                        'ZXMAG-PCB-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
-                        [
-                            links.RadiationLink,
-                        ],
-                        {
-                            'radiationArea1': 0.005,
-                            'radiationArea2': 0.006,
-                            'viewingFactor': 0.011,
                         }
                     ),
                     (
@@ -1466,7 +1469,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'MAG-Xcoil-MAG-Xarm-outer', ('MAG-Xarm', 'MAG-Xarm-outer'),
+                        'MAG-Xcoil-inner-MAG-Xarm-outer', ('MAG-Xarm', 'MAG-Xarm-outer'),
                         [
                             links.ContactLink,
                         ],
