@@ -389,6 +389,17 @@ model_description.append(
                             'viewingFactor': 0.17,
                         }
                     ),
+                    (
+                        'Panel-X+-inner-3C2-top', ('3C2', '3C2-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.17,
+                        }
+                    ),
                 ]
             ),
             (
@@ -442,7 +453,7 @@ model_description.append(
                             'conductivity': 237,
                             'length':  0.03,
                         }
-                    )
+                    ),
                 ]
             ),
             (
@@ -620,7 +631,7 @@ model_description.append(
                 },
                 [
                     (
-                        'Panel-Z--BAT-curved', ('Batteries', 'BAT-curved'),
+                        'Panel-Z--inner-BAT-curved', ('Batteries', 'BAT-curved'),
                         [
                             links.RadiationLink,
                         ],
