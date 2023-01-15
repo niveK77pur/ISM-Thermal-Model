@@ -139,7 +139,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'MS-Z--inner-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        'MS-Z-inner-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
                             links.ConductionLink,
                         ],
@@ -391,6 +391,17 @@ model_description.append(
                         }
                     ),
                     (
+                        'Panel-X--inner-3C2-top', ('3C2', '3C2-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.17,
+                        }
+                    ),
+                    (
                         'Panel-X+-inner-3C2-top', ('3C2', '3C2-top'),
                         [
                             links.RadiationLink,
@@ -476,7 +487,7 @@ model_description.append(
                 },
                 [
                     (
-                        'SSII-side-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        'SSII-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
                             links.ContactLink,
                         ],
@@ -488,7 +499,7 @@ model_description.append(
                 ]
             ),
         ]
-    ),
+    )
 )
 
 model_description.append(
@@ -520,7 +531,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'SSII-side-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        'SSII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
                         [
                             links.ContactLink,
                         ],
@@ -808,17 +819,6 @@ model_description.append(
                             'resistance': 0.05,
                         }
                     ),
-                    (
-                        'Panel-X--inner-3C2-top', ('3C2', '3C2-top'),
-                        [
-                            links.RadiationLink,
-                        ],
-                        {
-                            'radiationArea1': 0.008,
-                            'radiationArea2': 0.026,
-                            'viewingFactor': 0.17,
-                        }
-                    ),
                 ]
             ),
         ]
@@ -910,7 +910,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MS-Z--inner-SSIV-side', ('SSIV', 'SSIV-side'),
+                        'MS-Z-inner-SSIV-side', ('SSIV', 'SSIV-side'),
                         [
                             links.ContactLink,
                         ],
@@ -949,7 +949,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'SSIV-side-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        'SSIV-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
                         [
                             links.ContactLink,
                         ],
@@ -992,7 +992,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'MS-Z--inner-SSV-side', ('SSV', 'SSV-side'),
+                        'MS-Z-inner-SSV-side', ('SSV', 'SSV-side'),
                         [
                             links.ContactLink,
                         ],
@@ -1025,7 +1025,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MS-Z+-inner-SSVI-side', ('SSVI', 'SSVI-side'),
+                        'MS-Z+-SSVI-side', ('SSV', 'SSV-side'),
                         [
                             links.ContactLink,
                         ],
@@ -1035,13 +1035,13 @@ model_description.append(
                         }
                     ),
                     (
-                        'MS-Z--inner-SSVI-side', ('SSVI', 'SSVI-side'),
+                        'MS-Z--SSVI-side', ('SSV', 'SSV-side'),
                         [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.00044,
-                            'resistance': 0.05,
+                            'contactArea': 0.00044,       # used by contact calculations
+                            'resistance': 0.05,           # used by contact calculations
                         }
                     ),
                 ]
@@ -1066,9 +1066,17 @@ model_description.append(
                     'emissivity': 0.045,
                     'absorptivity': 0,
                 },
+                [ ]
+            ),
+            (
+                'RW-bottom',
+                {
+                    'emissivity': 0.045,
+                    'absorptivity': 0,
+                },
                 [
                     (
-                        'Panel-Z+-inner-RW-curved', ('RW', 'RW-curved'),
+                        'Panel-Z+-RW-curved', ('RW', 'RW-curved'),
                         [
                             links.RadiationLink,
                         ],
@@ -1078,15 +1086,6 @@ model_description.append(
                             'viewingFactor': 0.15,
                         }
                     ),
-                ]
-            ),
-            (
-                'RW-bottom',
-                {
-                    'emissivity': 0.045,
-                    'absorptivity': 0,
-                },
-                [
                     (
                         'Panel-X+-inner-RW-curved', ('RW', 'RW-curved'),
                         [
@@ -1099,7 +1098,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'Panel-Z--inner-RW-curved', ('RW', 'RW-curved'),
+                        'Panel-Z-inner-RW-curved', ('RW', 'RW-curved'),
                         [
                             links.RadiationLink,
                         ],
@@ -1143,6 +1142,14 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
+                [ ]
+            ),
+            (
+                'RW-PCB-bottom',
+                {
+                    'emissivity': 0.03,
+                    'absorptivity': 0,
+                },
                 [
                     (
                         'RW-bottom-RW-PCB-top', ('RW-PCB', 'RW-PCB-top'),
@@ -1154,15 +1161,6 @@ model_description.append(
                             'resistance': 0.05,
                         }
                     ),
-                ]
-            ),
-            (
-                'RW-PCB-bottom',
-                {
-                    'emissivity': 0.03,
-                    'absorptivity': 0,
-                },
-                [
                     (
                         'RW-PCB-bottom-SSIV-top', ('SSIV', 'SSIV-top'),
                         [
@@ -1356,19 +1354,7 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [
-                    (
-                        'ZXMAG-PCB-top-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
-                        [
-                            links.RadiationLink,
-                        ],
-                        {
-                            'radiationArea1': 0.005,
-                            'radiationArea2': 0.006,
-                            'viewingFactor': 0.011,
-                        }
-                    ),
-                ]
+                [ ]
             ),
         ]
     ),
@@ -1392,7 +1378,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MAG-Zcoil-inner-MAG-Zarm-outer', ('MAG-Zarm', 'MAG-Zarm-outer'),
+                        'MAG-Zcoil-MAG-Zarm-outer', ('MAG-Zarm', 'MAG-Zarm-outer'),
                         [
                             links.ContactLink,
                         ],
@@ -1402,7 +1388,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'Panel-Z--inner-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
+                        'Panel-Z--MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
                         [
                             links.RadiationLink,
                         ],
@@ -1410,6 +1396,17 @@ model_description.append(
                             'radiationArea1': 0.005,
                             'radiationArea2': 0.026,
                             'viewingFactor': 0.36,
+                        }
+                    ),
+                    (
+                        'ZXMAG-PCB-MAG-Zcoil-outer', ('MAG-Zcoil', 'MAG-Zcoil-outer'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.005,
+                            'radiationArea2': 0.006,
+                            'viewingFactor': 0.011,
                         }
                     ),
                     (
@@ -1469,7 +1466,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'MAG-Xcoil-inner-MAG-Xarm-outer', ('MAG-Xarm', 'MAG-Xarm-outer'),
+                        'MAG-Xcoil-MAG-Xarm-outer', ('MAG-Xarm', 'MAG-Xarm-outer'),
                         [
                             links.ContactLink,
                         ],
