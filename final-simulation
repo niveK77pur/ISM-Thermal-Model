@@ -461,9 +461,20 @@ model_description.append(
                             links.ConductionLink,
                         ],
                         {
-                            'conductionArea': 0.0001,
+                            'conductionArea': 0.000103,
                             'conductivity': 237,
-                            'length':  0.03,
+                            'length': 0.03,
+                        }
+                    ),
+                    (
+                        'EPS-bottom-SSII-top', ('SSII', 'SSII-top'),
+                        [
+                            links.ConductionLink,
+                        ],
+                        {
+                            'conductionArea': 0.000103,
+                            'conductivity': 237,
+                            'length': 0.03,
                         }
                     ),
                 ]
