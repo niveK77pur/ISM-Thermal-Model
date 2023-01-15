@@ -633,14 +633,6 @@ model_description.append(
                     'emissivity': 0.03,
                     'absorptivity': 0,
                 },
-                [ ]
-            ),
-            (
-                'Panel-Z--outer',
-                {
-                    'emissivity': 0.03,
-                    'absorptivity': 0,
-                },
                 [
                     (
                         'Panel-Z--inner-BAT-curved', ('Batteries', 'BAT-curved'),
@@ -673,6 +665,16 @@ model_description.append(
                             'radiationArea1': 0.008,
                             'radiationArea2': 0.004,
                             'viewingFactor': 0.06,
+                        }
+                    ),
+                    (
+                        'MS-Z--outer-Panel-Z--inner', ('Panel-Z-', 'Panel-Z--inner'),
+                        [
+                            links.ContactLink,
+                        ],
+                        {
+                            'contactArea': 0.004,
+                            'resistance': 0.05,
                         }
                     ),
                 ]
