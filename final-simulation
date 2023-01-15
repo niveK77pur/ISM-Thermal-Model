@@ -139,7 +139,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'MS-Z-inner-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        'MS-Z--inner-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
                             links.ConductionLink,
                         ],
@@ -391,17 +391,6 @@ model_description.append(
                         }
                     ),
                     (
-                        'Panel-X--inner-3C2-top', ('3C2', '3C2-top'),
-                        [
-                            links.RadiationLink,
-                        ],
-                        {
-                            'radiationArea1': 0.008,
-                            'radiationArea2': 0.026,
-                            'viewingFactor': 0.17,
-                        }
-                    ),
-                    (
                         'Panel-X+-inner-3C2-top', ('3C2', '3C2-top'),
                         [
                             links.RadiationLink,
@@ -487,7 +476,7 @@ model_description.append(
                 },
                 [
                     (
-                        'SSII-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
+                        'SSII-side-MS-Z+-inner', ('MS-Z+', 'MS-Z+-inner'),
                         [
                             links.ContactLink,
                         ],
@@ -499,7 +488,7 @@ model_description.append(
                 ]
             ),
         ]
-    )
+    ),
 )
 
 model_description.append(
@@ -531,7 +520,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'SSII-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        'SSII-side-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
                         [
                             links.ContactLink,
                         ],
@@ -819,6 +808,17 @@ model_description.append(
                             'resistance': 0.05,
                         }
                     ),
+                    (
+                        'Panel-X--inner-3C2-top', ('3C2', '3C2-top'),
+                        [
+                            links.RadiationLink,
+                        ],
+                        {
+                            'radiationArea1': 0.008,
+                            'radiationArea2': 0.026,
+                            'viewingFactor': 0.17,
+                        }
+                    ),
                 ]
             ),
         ]
@@ -910,7 +910,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MS-Z-inner-SSIV-side', ('SSIV', 'SSIV-side'),
+                        'MS-Z--inner-SSIV-side', ('SSIV', 'SSIV-side'),
                         [
                             links.ContactLink,
                         ],
@@ -949,7 +949,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'SSIV-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
+                        'SSIV-side-MS-Z--inner', ('MS-Z-', 'MS-Z--inner'),
                         [
                             links.ContactLink,
                         ],
@@ -992,7 +992,7 @@ model_description.append(
                         }
                     ),
                     (
-                        'MS-Z-inner-SSV-side', ('SSV', 'SSV-side'),
+                        'MS-Z--inner-SSV-side', ('SSV', 'SSV-side'),
                         [
                             links.ContactLink,
                         ],
@@ -1025,7 +1025,7 @@ model_description.append(
                 },
                 [
                     (
-                        'MS-Z+-SSVI-side', ('SSV', 'SSV-side'),
+                        'MS-Z+-inner-SSVI-side', ('SSVI', 'SSVI-side'),
                         [
                             links.ContactLink,
                         ],
@@ -1035,13 +1035,13 @@ model_description.append(
                         }
                     ),
                     (
-                        'MS-Z--SSVI-side', ('SSV', 'SSV-side'),
+                        'MS-Z--inner-SSVI-side', ('SSVI', 'SSVI-side'),
                         [
                             links.ContactLink,
                         ],
                         {
-                            'contactArea': 0.00044,       # used by contact calculations
-                            'resistance': 0.05,           # used by contact calculations
+                            'contactArea': 0.00044,
+                            'resistance': 0.05,
                         }
                     ),
                 ]
